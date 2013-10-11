@@ -9,8 +9,13 @@ var ExpoCircular;
     ExpoCircular.mapa;
 
     ExpoCircular.init = function (){
-    	console.log('Do awesome stuff!');
-    	ExpoCircular.mapa = d3.dataviz_circular('map-container');
+
+		d3.csv("data/estaciones.csv", function(stations) {
+		  d3.json("data/matriz_viajes.json", function(matrix) {
+			ExpoCircular.mapa = d3.dataviz_circular('map-container',stations,matrix);
+		  });
+		});
+
     };
 
 })(window, document,jQuery, d3);
