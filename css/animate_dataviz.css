@@ -35,3 +35,17 @@ line.time {
   stroke-width: 5px;
   opacity: .5;
 }
+
+.panel {
+  background-color: #cc9900;
+  height: 800px;
+  width: 100%;
+}
+
+.panel-hide{
+  display: none;
+}
+
+#numbers-container .span6{
+  text-align: center;
+}

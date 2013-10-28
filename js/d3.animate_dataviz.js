@@ -1,4 +1,4 @@
-d3.animate_dataviz = function(containerId, stations, data) {
+d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause) {
 
 	var margin = {top: 20, right: 20, bottom: 30, left: 10},
 	    width = 1080 - margin.left - margin.right,
@@ -47,7 +47,9 @@ d3.animate_dataviz = function(containerId, stations, data) {
       d.Record_Count = +d.Record_Count;
     });
 
-	var timeline;
+	var timeline,
+		duration = aDuration,
+		pause = aPause;
 
     function draw(){
 
@@ -94,20 +96,31 @@ d3.animate_dataviz = function(containerId, stations, data) {
 
 	}
 
+	var _startTransition = function (){
+		timeline
+		.attr("x1", function(d){
+		  return x(parseDate('2010-12'))
+		})
+		.attr("x2", function(d){
+		  return x(parseDate('2010-12'))
+		})		
+		.transition()
+		.duration(duration)
+		.ease('linear')
+		.attr("x1", function(d){
+		  return x(parseDate('2013-09'))
+		})
+		.attr("x2", function(d){
+		  return x(parseDate('2013-09'))
+		});
+	}
+
 	draw();
 
 	return {
-		play: function(){
-			timeline
-			.transition()
-			.duration(20000)
-			.ease('linear')
-			.attr("x1", function(d){
-			  return x(parseDate('2013-09'))
-			})
-			.attr("x2", function(d){
-			  return x(parseDate('2013-09'))
-			});
+		start: function(){
+			//switch
+			_startTransition();
 		}
 	};
 
