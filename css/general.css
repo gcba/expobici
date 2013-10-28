@@ -1,1 +1,54 @@
 /* common styles */
+
+@font-face {
+    font-family: 'expobici';
+    src:url('fonts/expobici.eot');
+    src:url('fonts/expobici.eot?#iefix') format('embedded-opentype'),
+        url('fonts/expobici.ttf') format('truetype'),
+        url('fonts/expobici.woff') format('woff'),
+        url('fonts/expobici.svg#expobici') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class*="icon-"] {
+    font-family: 'expobici';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-compass:before {
+    content: "\e600";
+}
+.icon-celsius:before {
+    content: "\e601";
+}
+.icon-heart:before {
+    content: "\e602";
+}
+.icon-colon:before {
+    content: "\e603";
+}
+.icon-subte:before {
+    content: "\e604";
+}
+.icon-co2:before {
+    content: "\e605";
+}
+.icon-hamburguesa:before {
+    content: "\e606";
+}
+.icon-argentina:before {
+    content: "\e607";
+}
+.icon-luna:before {
+    content: "\e608";
+}
