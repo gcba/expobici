@@ -2,7 +2,7 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
 
 	var margin = {top: 20, right: 20, bottom: 30, left: 10},
 	    width = 1080 - margin.left - margin.right,
-	    height = 300 - margin.top - margin.bottom;
+	    height = 350 - margin.top - margin.bottom;
 
 	var parseDate = d3.time.format("%Y-%m").parse;
 	var parseDateUsuarios = d3.time.format("%Y %m").parse;
