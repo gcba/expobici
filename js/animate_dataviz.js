@@ -8,7 +8,7 @@ var AnimateDataviz;
 
     AnimateDataviz.graph;
 
-    AnimateDataviz.duration = 1000 * 30;
+    AnimateDataviz.duration = 1000 * 60;
 
     AnimateDataviz.pause = 1000 * 10 ;
 
@@ -29,6 +29,11 @@ var AnimateDataviz;
     AnimateDataviz.$colon;
     AnimateDataviz.$luna;
 
+    //Current
+    AnimateDataviz.$fecha_d = $('#current_day');
+    AnimateDataviz.$fecha_m = $('#current_month');
+    AnimateDataviz.$fecha_y = $('#current_year');    
+
     window.odometerOptions = {
           auto: false,
           format: '(.ddd),dd'
@@ -41,6 +46,7 @@ var AnimateDataviz;
           .defer(d3.csv, 'data/accumRecorBici.csv')
           .defer(d3.csv, 'data/UsuariosXMes.csv')
           .defer(d3.csv, 'data/biciKmMes.csv')
+          .defer(d3.csv, 'data/clima.csv')
           .awaitAll(AnimateDataviz.filesLoaded);
 
     };
@@ -50,6 +56,7 @@ var AnimateDataviz;
         AnimateDataviz.data_acum = results[1];
         AnimateDataviz.usuarios_mes = results[2];
         AnimateDataviz.kms_mes = results[3];
+        AnimateDataviz.clima = results[4];
         AnimateDataviz.graph = d3.animate_dataviz('graph-container',
                 AnimateDataviz.stations,
                 AnimateDataviz.data_acum,
@@ -85,18 +92,39 @@ var AnimateDataviz;
           value: 0
         });
 
+        var f = new Odometer({
+          el: document.querySelector('#current_day'),
+          value: 0
+        });
+
+        var g = new Odometer({
+          el: document.querySelector('#current_month'),
+          value: 0
+        });
+
+        var h = new Odometer({
+          el: document.querySelector('#current_year'),
+          value: 0
+        });
+
+
         AnimateDataviz.$usuarios = $('#usuarios');
         AnimateDataviz.$recorridos = $('#recorridos');
         AnimateDataviz.$kms = $('#kms');
 
         AnimateDataviz.$colon = $('#teatro-colon');
         AnimateDataviz.$luna = $('#viaje-luna');
+
+        AnimateDataviz.$fecha_d = $('#current_day');
+        AnimateDataviz.$fecha_m = $('#current_month');
+        AnimateDataviz.$fecha_y = $('#current_year'); 
     };
 
     AnimateDataviz.start = function(){
         AnimateDataviz.startOdometers();
         AnimateDataviz.graph.start();
         AnimateDataviz.updateNumbers();
+        AnimateDataviz.updateDays();
         setInterval(AnimateDataviz.everyStart,AnimateDataviz.duration+AnimateDataviz.pause);
     };
 
@@ -113,6 +141,24 @@ var AnimateDataviz;
             } else {
                 i = 0;
                 clearInterval(intervalID);
+            }
+        },r);
+    };
+
+    AnimateDataviz.updateDays = function(){
+        var r = AnimateDataviz.duration / AnimateDataviz.clima.length;
+        var i = 0;
+        var current;
+        var intervalIDDays = setInterval(function(){
+            if(AnimateDataviz.clima[i]){
+                current = AnimateDataviz.clima[i].dia.split('/');
+                AnimateDataviz.$fecha_y.html(current[0]);
+                AnimateDataviz.$fecha_m.html(current[1]);
+                AnimateDataviz.$fecha_d.html(current[2]);
+                i++;
+            } else {
+                i = 0;
+                clearInterval(intervalIDDays);
             }
         },r);
     };
@@ -171,6 +217,7 @@ var AnimateDataviz;
             AnimateDataviz.clearMap();
             AnimateDataviz.updateNumbers();
         }
+        AnimateDataviz.updateDays();
         AnimateDataviz.graph.start();
     };
 
