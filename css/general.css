@@ -1,18 +1,47 @@
 /* common styles */
 
+body {
+    background-color: #e5e5e5;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: normal;
+    color: #333;
+}
+
 @font-face {
-    font-family: 'expobici';
-    src:url('fonts/expobici.eot');
-    src:url('fonts/expobici.eot?#iefix') format('embedded-opentype'),
-        url('fonts/expobici.ttf') format('truetype'),
-        url('fonts/expobici.woff') format('woff'),
-        url('fonts/expobici.svg#expobici') format('svg');
+    font-family: 'Gotham Medium';
+    src: url('/fonts/gotham-medium.eot');
+    src: url('/fonts/gotham-medium.eot') format('embedded-opentype'),
+         url('/fonts/gotham-medium.woff') format('woff'),
+         url('/fonts/gotham-medium.ttf') format('truetype'),
+         url('/fonts/gotham-medium.svg#GothamMedium') format('svg');
+}
+
+@font-face {
+    font-family: 'Gotham Book';
+    src: url('/fonts/gotham-book.eot');
+    src: url('/fonts/gotham-book.eot') format('embedded-opentype'),
+         url('/fonts/gotham-book.woff') format('woff'),
+         url('/fonts/gotham-book.ttf') format('truetype'),
+         url('/fonts/gotham-book.svg#GothamBook') format('svg');
+}
+
+
+@font-face {
+    font-family: 'Expo Bici';
+    src:url('/fonts/expobici.eot');
+    src:url('/fonts/expobici.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/expobici.ttf') format('truetype'),
+        url('/fonts/expobici.woff') format('woff'),
+        url('/fonts/expobici.svg#expobici') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
-[class*="icon-"] {
-    font-family: 'expobici';
+/* Rename icon- for viz- to avoid conflicts with Bootstrap =========== */
+
+[class*="viz-"] {
+    font-family: 'Expo Bici';
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -25,30 +54,86 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-compass:before {
+.viz-compass:before {
     content: "\e600";
 }
-.icon-celsius:before {
+.viz-celsius:before {
     content: "\e601";
 }
-.icon-heart:before {
+.viz-heart:before {
     content: "\e602";
 }
-.icon-colon:before {
+.viz-colon:before {
+    line-height: 115px;
+    font-size: 50px;
     content: "\e603";
 }
-.icon-subte:before {
+.viz-subte:before {
+    line-height: 115px;
+    font-size: 65px;
     content: "\e604";
 }
-.icon-co2:before {
+.viz-co2:before {
+    line-height: 115px;
+    font-size: 55px;
     content: "\e605";
 }
-.icon-hamburguesa:before {
+.viz-hamburguesa:before {
     content: "\e606";
 }
-.icon-argentina:before {
+.viz-argentina:before {
     content: "\e607";
 }
-.icon-luna:before {
+.viz-luna:before {
     content: "\e608";
 }
+
+.widget {
+    color:                          #424242;
+    width:                          320px;
+    height:                         320px;
+    display:                        block;
+    text-align:                     center !important;
+}
+
+.count {
+    font-family:                    "Gotham Medium", "Arial";
+    font-style:                     normal;
+    font-size:                      3.438em;
+    letter-spacing:                 -.1em;
+    line-height:                    1em;
+    margin-top:                     7px;
+}
+.reference {
+    display:                        block;
+    margin:                         0 auto;
+    width:                          200px;
+    font-family:                    "Gotham Book", "Arial";
+    font-style:                     normal;
+    font-size:                      1.5em
+}
+
+.circle {
+    margin:                         0 auto;
+    display:                        block;
+    padding:                        5px;
+    background-color:               #ffffff;
+    color:                          #5cdbb0;
+    border:                         #5cdbb0 solid 7px;
+    border-radius:                  120px;
+    -webkit-border-radius:          120px;
+    -moz-border-radius:             120px;
+    width:                          120px;
+    height:                         120px;
+
+    -webkit-transition:             all .1s ease-in-out;
+
+    text-decoration:                none;
+
+    -ms-filter:                     "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter:                         alpha(opacity=100);
+    -moz-opacity:                   1;
+    -khtml-opacity:                 1;
+    opacity:                        1
+}
+
