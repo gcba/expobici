@@ -18,12 +18,12 @@
   *vertical-align: auto;
   position: relative;
 
-  padding: 5px;
+  padding: 0px 5px;
   text-align: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  border: 1px solid red;  
+/*  border: 1px solid red;  */
 
 }
 .odometer.odometer-auto-theme .odometer-digit, .odometer.odometer-theme-default .odometer-digit {
