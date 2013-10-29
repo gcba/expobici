@@ -35,6 +35,7 @@ var AnimateDataviz;
           .defer(d3.csv, 'data/estaciones_fecha.csv')
           .defer(d3.csv, 'data/accumRecorBici.csv')
           .defer(d3.csv, 'data/UsuariosXMes.csv')
+          .defer(d3.csv, 'data/biciKmMes.csv')
           .awaitAll(AnimateDataviz.filesLoaded);
 
     };
@@ -43,6 +44,7 @@ var AnimateDataviz;
         AnimateDataviz.stations = results[0];
         AnimateDataviz.data_acum = results[1];
         AnimateDataviz.usuarios_mes = results[2];
+        AnimateDataviz.kms_mes = results[3];
         AnimateDataviz.graph = d3.animate_dataviz('graph-container',AnimateDataviz.stations,AnimateDataviz.data_acum,AnimateDataviz.duration,AnimateDataviz.pause);
         AnimateDataviz.start();
     };
@@ -83,7 +85,8 @@ var AnimateDataviz;
         var intervalID = setInterval(function(){
             if(
                 AnimateDataviz.updateRecorridos(i) && 
-                AnimateDataviz.updateUsuarios(i)
+                AnimateDataviz.updateUsuarios(i) &&
+                AnimateDataviz.updateKms(i)
                 ){
                 i++;
             } else {
@@ -104,6 +107,14 @@ var AnimateDataviz;
     AnimateDataviz.updateUsuarios = function(i){
         if(AnimateDataviz.usuarios_mes[i]){
             AnimateDataviz.$usuarios.html(AnimateDataviz.usuarios_mes[i].usuarios_acum);
+            return true;
+        }
+        return false;
+    };
+
+    AnimateDataviz.updateKms = function(i){
+        if(AnimateDataviz.kms_mes[i]){
+            AnimateDataviz.$kms.html(Math.round(AnimateDataviz.kms_mes[i].trDistance_Accum));
             return true;
         }
         return false;
