@@ -50,7 +50,7 @@ d3.animate_map = function(containerId, stations) {
 				return "translate(" + projection([d.clong,d.clat]) + ")";
 			})
 			.attr('stroke-width',3)
-			.attr("r",5);
+			.attr("r",0);
 	}
 
 	draw();
