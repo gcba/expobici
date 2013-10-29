@@ -6,6 +6,9 @@ body {
     font-size: 14px;
     line-height: normal;
     color: #333;
+    background-image: url(/refe1.png);
+    background-position: top left;
+    background-repeat: no-repeat;
 }
 
 @font-face {
@@ -89,6 +92,28 @@ body {
 .viz-luna:before {
     content: "\e608";
 }
+
+h1, h2 {
+    font-style:                     normal;
+    color:                          #212121;
+}
+
+h1 {
+    font-family:                    "Gotham Medium", "Arial";
+    font-size:                      2.438em;
+    letter-spacing:                 -.1em;
+    line-height:                    1em;
+    margin-top:                     7px;
+}
+
+h2 {
+    font-family:                    "Gotham Book", "Arial";
+    font-size:                      1.563em;
+    letter-spacing:                 -.1em;
+    line-height:                    1em;
+    margin-top:                     7px;
+}
+
 
 .main-widget {
     color:                          #424242;
