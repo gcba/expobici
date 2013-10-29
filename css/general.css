@@ -90,6 +90,49 @@ body {
     content: "\e608";
 }
 
+.main-widget {
+    color:                          #424242;
+    width:                          inherit;
+    height:                         inherit;
+    display:                        block;
+    text-align:                     center !important;
+}
+
+.main-widget .circle {
+    margin:                         0 auto;
+    display:                        block;
+    padding:                        5px;
+    background-color:               #5cdbb0;
+    color:                          #ffffff;
+    border:                         #ffffff solid 7px;
+    border-radius:                  550px;
+    -webkit-border-radius:          550px;
+    -moz-border-radius:             550px;
+    width:                          450px;
+    height:                         450px;
+
+    -webkit-transition:             all .1s ease-in-out;
+
+    text-decoration:                none;
+
+    -ms-filter:                     "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter:                         alpha(opacity=100);
+    -moz-opacity:                   1;
+    -khtml-opacity:                 1;
+    opacity:                        1
+}
+
+.main-widget .counter {
+    display:                        block;
+    margin:                         0 auto;
+    font-family:                    "Gotham Medium", "Arial";
+    font-style:                     normal;
+    font-size:                      5.2em;
+    letter-spacing:                 -.1em;
+    line-height:                    1em;
+    margin-top:                     7px;
+}
+
 .widget {
     color:                          #424242;
     width:                          140px;

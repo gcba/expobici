@@ -1,9 +1,4 @@
 /* dataviz */
-body {
-  background-color: #DDDDDD;
-  font-family: arial;
-  font-size: 20px;
-}
 
 .axis path,
 .axis line {
@@ -37,8 +32,7 @@ line.time {
 }
 
 .panel {
-  background-color: #cc9900;
-  height: 800px;
+  min-height: 800px;
   width: 100%;
 }
 

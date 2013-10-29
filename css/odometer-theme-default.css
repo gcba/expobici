@@ -5,6 +5,7 @@
   vertical-align: middle;
   *vertical-align: auto;
   position: relative;
+
 }
 .odometer.odometer-auto-theme, .odometer.odometer-theme-default {
   *display: inline;
@@ -16,6 +17,14 @@
   vertical-align: middle;
   *vertical-align: auto;
   position: relative;
+
+  padding: 5px;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  border: 1px solid red;  
+
 }
 .odometer.odometer-auto-theme .odometer-digit, .odometer.odometer-theme-default .odometer-digit {
   *display: inline;
@@ -88,9 +97,7 @@
 }
 
 .odometer.odometer-auto-theme, .odometer.odometer-theme-default {
-  font-family: "Helvetica Neue", sans-serif;
-  line-height: 1.1em;
 }
 .odometer.odometer-auto-theme .odometer-value, .odometer.odometer-theme-default .odometer-value {
-  text-align: center;
+
 }
