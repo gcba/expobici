@@ -9,7 +9,7 @@ var AnimateDataviz;
     AnimateDataviz.graph;
     AnimateDataviz.map;
 
-    AnimateDataviz.duration = 1000 * 20;
+    AnimateDataviz.duration = 1000 * 60;
 
     AnimateDataviz.pause = 1000 * 10 ;
 
@@ -221,7 +221,7 @@ var AnimateDataviz;
     };
 
     AnimateDataviz.clearMap = function(){
-        //TODO
+        AnimateDataviz.map.clear();
     };
     
     AnimateDataviz.everyStart = function(){
