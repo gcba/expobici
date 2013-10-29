@@ -79,6 +79,8 @@ body {
     content: "\e605";
 }
 .viz-hamburguesa:before {
+    line-height: 120px;
+    font-size: 50px;
     content: "\e606";
 }
 .viz-argentina:before {
@@ -90,16 +92,18 @@ body {
 
 .widget {
     color:                          #424242;
-    width:                          320px;
-    height:                         320px;
+    width:                          140px;
+    height:                         290px;
     display:                        block;
     text-align:                     center !important;
 }
 
 .count {
+    display:                        block;
+    margin:                         0 auto;
     font-family:                    "Gotham Medium", "Arial";
     font-style:                     normal;
-    font-size:                      3.438em;
+    font-size:                      3.2em;
     letter-spacing:                 -.1em;
     line-height:                    1em;
     margin-top:                     7px;
@@ -107,10 +111,9 @@ body {
 .reference {
     display:                        block;
     margin:                         0 auto;
-    width:                          200px;
     font-family:                    "Gotham Book", "Arial";
     font-style:                     normal;
-    font-size:                      1.5em
+    font-size:                      1.2em
 }
 
 .circle {
