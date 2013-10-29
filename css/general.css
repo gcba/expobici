@@ -6,9 +6,9 @@ body {
     font-size: 14px;
     line-height: normal;
     color: #333;
-    background-image: url(/refe1.png);
+    /*background-image: url(/refe1.png);
     background-position: top left;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat;*/
 }
 
 @font-face {

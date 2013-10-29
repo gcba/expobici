@@ -7,8 +7,9 @@ var AnimateDataviz;
     AnimateDataviz = global.AnimateDataviz = global.AnimateDataviz || {};
 
     AnimateDataviz.graph;
+    AnimateDataviz.map;
 
-    AnimateDataviz.duration = 1000 * 60;
+    AnimateDataviz.duration = 1000 * 20;
 
     AnimateDataviz.pause = 1000 * 10 ;
 
@@ -42,7 +43,7 @@ var AnimateDataviz;
     AnimateDataviz.init = function (){
 
         queue()
-          .defer(d3.csv, 'data/estaciones_fecha.csv')
+          .defer(d3.csv, 'data/EstacionesF.csv')
           .defer(d3.csv, 'data/accumRecorBici.csv')
           .defer(d3.csv, 'data/UsuariosXMes.csv')
           .defer(d3.csv, 'data/biciKmMes.csv')
@@ -63,50 +64,60 @@ var AnimateDataviz;
                 AnimateDataviz.duration,
                 AnimateDataviz.pause,
                 AnimateDataviz.usuarios_mes);
+
+        AnimateDataviz.map = d3.animate_map('map-container',AnimateDataviz.stations);
+
         AnimateDataviz.start();
     };
 
     AnimateDataviz.startOdometers = function(){
         var a = new Odometer({
           el: document.querySelector('#usuarios'),
-          value: 0
+          value: 0,
+          format: '(.ddd),dd'
         });
 
         var b = new Odometer({
           el: document.querySelector('#recorridos'),
-          value: 0
+          value: 0,
+          format: '(.ddd),dd'
         });
 
         var c = new Odometer({
           el: document.querySelector('#kms'),
-          value: 0
+          value: 0,
+          format: '(.ddd),dd'
         });
 
         var d = new Odometer({
           el: document.querySelector('#teatro-colon'),
-          value: 0
+          value: 0,
+          format: '(.ddd),dd'
         });
 
         var e = new Odometer({
           el: document.querySelector('#viaje-luna'),
-          value: 0
+          value: 0,
+          format: '(.ddd),dd'
         });
 
         var f = new Odometer({
           el: document.querySelector('#current_day'),
-          value: 0
+          value: 0,
+          format: '(.ddd),dd'
         });
 
         var g = new Odometer({
           el: document.querySelector('#current_month'),
-          value: 0
+          value: 0,
+          format: '(.ddd),dd'
         });
 
         var h = new Odometer({
           el: document.querySelector('#current_year'),
-          value: 0
+          value: 0,
+          format: '(.ddd),dd'
         });
-
 
         AnimateDataviz.$usuarios = $('#usuarios');
         AnimateDataviz.$recorridos = $('#recorridos');
@@ -128,10 +139,12 @@ var AnimateDataviz;
         setInterval(AnimateDataviz.everyStart,AnimateDataviz.duration+AnimateDataviz.pause);
     };
 
+    AnimateDataviz.intervalID;
+
     AnimateDataviz.updateNumbers = function(){
         var r = AnimateDataviz.duration / AnimateDataviz.data_acum.length;
         var i = 0;
-        var intervalID = setInterval(function(){
+        AnimateDataviz.intervalID = setInterval(function(){
             if(
                 AnimateDataviz.updateRecorridos(i) && 
                 AnimateDataviz.updateUsuarios(i) &&
@@ -140,25 +153,30 @@ var AnimateDataviz;
                 i++;
             } else {
                 i = 0;
-                clearInterval(intervalID);
+                clearInterval(AnimateDataviz.intervalID);
             }
         },r);
     };
+
+    AnimateDataviz.intervalIDDays;
 
     AnimateDataviz.updateDays = function(){
         var r = AnimateDataviz.duration / AnimateDataviz.clima.length;
         var i = 0;
         var current;
-        var intervalIDDays = setInterval(function(){
+        AnimateDataviz.intervalIDDays = setInterval(function(){
             if(AnimateDataviz.clima[i]){
                 current = AnimateDataviz.clima[i].dia.split('/');
                 AnimateDataviz.$fecha_y.html(current[0]);
                 AnimateDataviz.$fecha_m.html(current[1]);
                 AnimateDataviz.$fecha_d.html(current[2]);
+                if(AnimateDataviz.currentPanel == 'MAP'){
+                    AnimateDataviz.map.update(AnimateDataviz.clima[i].dia);
+                }
                 i++;
             } else {
                 i = 0;
-                clearInterval(intervalIDDays);
+                clearInterval(AnimateDataviz.intervalIDDays);
             }
         },r);
     };
@@ -198,7 +216,7 @@ var AnimateDataviz;
         AnimateDataviz.$kms.html(0);
     };
 
-    AnimateDataviz.updateMap = function(){
+    AnimateDataviz.updateMap = function(d){
         //TODO
     };
 

@@ -53,12 +53,12 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
 		d.fecha = parseDateUsuarios(d.fecha);
 	});
 
-	stations.forEach(function(d) {
+/*	stations.forEach(function(d) {
 		d.fecha = d.fecha.split(" ")[0];
 		d.fecha = parseDateEstaciones(d.fecha);
 	});
 
-	setupEstacion = stations;
+	setupEstacion = stations;*/
 
 	data.forEach(function(d) {
       d.anioMes = parseDate(d.anioMes);
