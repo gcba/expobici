@@ -9,6 +9,8 @@
 
 .y text{
   fill: steelblue;
+  font-size: 20px;
+  text-shadow: 2px 2px white;
 }
 
 .y line,
@@ -23,8 +25,24 @@
   stroke-width: 5px;
 }
 
+.reference-graph {
+  font-size: 40px;
+  font-weight: bold;
+  text-shadow: 2px 2px white;  
+}
+
+.reference-viajes {
+  color: steelblue;
+}
+
+.reference-usuarios{
+  color:orange;
+}
+
 .y2 text{
   fill: orange;
+  font-size: 20px;
+  text-shadow: 2px 2px white;
 }
 
 .y2 line,

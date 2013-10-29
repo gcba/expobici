@@ -75,6 +75,16 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
 	    y.domain(d3.extent(data, function(d) { return d.Record_Count; }));
 	    y2.domain(d3.extent(users, function(d) { return d.usuarios; }));
 
+	    svg.append("path")
+	        .datum(data)
+	        .attr("class", "line-recorridos")
+	        .attr("d", line);
+
+	    svg.append("path")
+	        .datum(users)
+	        .attr("class", "line-usuarios")
+	        .attr("d", lineUsers);
+	    
 	    svg.append("g")
 	        .attr("class", "x axis")
 	        .attr("transform", "translate(0," + height + ")")
@@ -89,17 +99,8 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
 	        .attr("class", "y axis")
 	        .call(yAxis);
 
-	    svg.append("path")
-	        .datum(data)
-	        .attr("class", "line-recorridos")
-	        .attr("d", line);
 
-	    svg.append("path")
-	        .datum(users)
-	        .attr("class", "line-usuarios")
-	        .attr("d", lineUsers);
-
-	    svg.selectAll("line.estacion")
+	 /*   svg.selectAll("line.estacion")
 			.data(setupEstacion).enter()
 			.append("line")
 			.attr("class", "estacion")
@@ -110,7 +111,7 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
 			  return x(d.fecha)
 			})
 			.attr("y1",0)
-			.attr("y2",height);
+			.attr("y2",height);*/
 
 	    timeline = svg.append("line")
 			.attr("class", "time")
