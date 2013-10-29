@@ -12,14 +12,40 @@ body {
   shape-rendering: crispEdges;
 }
 
-.x.axis path {
-  display: none;
+.y text{
+  fill: steelblue;
 }
 
-.line {
+.y line,
+.y path{
+  stroke:steelblue;
+  stroke-width: 3px;
+}
+
+.line-usuarios {
   fill: none;
   stroke: steelblue;
   stroke-width: 5px;
+}
+
+.y2 text{
+  fill: orange;
+}
+
+.y2 line,
+.y2 path{
+  stroke:orange;
+  stroke-width: 3px;
+}
+
+.line-recorridos {
+  fill: none;
+  stroke: orange;
+  stroke-width: 5px;
+}
+
+.x.axis path {
+  display: none;
 }
 
 line.estacion {

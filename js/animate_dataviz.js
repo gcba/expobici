@@ -45,7 +45,12 @@ var AnimateDataviz;
         AnimateDataviz.data_acum = results[1];
         AnimateDataviz.usuarios_mes = results[2];
         AnimateDataviz.kms_mes = results[3];
-        AnimateDataviz.graph = d3.animate_dataviz('graph-container',AnimateDataviz.stations,AnimateDataviz.data_acum,AnimateDataviz.duration,AnimateDataviz.pause);
+        AnimateDataviz.graph = d3.animate_dataviz('graph-container',
+                AnimateDataviz.stations,
+                AnimateDataviz.data_acum,
+                AnimateDataviz.duration,
+                AnimateDataviz.pause,
+                AnimateDataviz.usuarios_mes);
         AnimateDataviz.start();
     };
 
