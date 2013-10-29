@@ -1,15 +1,33 @@
 /* common styles */
 
+html {
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    -webkit-backface-visibility:hidden;
+    moz-backface-visibility:hidden;
+    -ms-backface-visibility:hidden;
+    -webkit-touch-callout:none
+}
+a {  
+    outline:0
+}
+input::-moz-focus-inner {
+    border:0
+}
+
 body {
     background-color: #e5e5e5;
+
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 14px;
     line-height: normal;
     color: #333;
-    background-image: url(/refe1.png);
+/*    background-image: url(/refe1.png);
     background-position: top left;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat;*/
 }
+
+
 
 @font-face {
     font-family: 'Gotham Medium';
@@ -92,6 +110,13 @@ body {
 .viz-luna:before {
     content: "\e608";
 }
+
+header{display:block}header .header-gcba{padding:10px 0;overflow:visible;background-color:#f9dd00;*background-color:#ffbd04;background-image:-o-linear-gradient(top, #ffe603, #ffbd04);background-image:linear-gradient(top, #ffe603, #ffbd04);background-image:-ms-linear-gradient(top, #ffe603, #ffbd04);background-image:-webkit-linear-gradient(top, #ffe603, #ffbd04);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#ffe603), to(#ffbd04));background-image:-moz-linear-gradient(top, #ffe603, #ffbd04);background-repeat:repeat-x;border-top:1px solid #fdfd00;border-bottom:1px solid #ffc702;filter:progid:dximagetransform.microsoft.gradient(enabled=false);filter:progid:dximagetransform.microsoft.gradient(startColorstr='#ffe603', endColorstr='#ffbd04', GradientType=0);box-shadow:0 0 10px rgba(0,0,0,0.7)}header .header-gcba .header-inner{padding-right:20px;padding-left:20px}
+header .header-gcba:hover,header .header-gcba:active,header .header-gcba.active,header .header-gcba.disabled,header .header-gcba[disabled]{background-color:#ffbd04;*background-color:#d6be00}
+header .header-gcba:active,header .header-gcba.active{background-color:#bda700}
+header .header-gcba .container{-webkit-opacity:.7;-moz-opacity:.7;opacity:.7}
+header .header-gcba .logo{float:left;width:172px;height:33px;background:url(../img/logo-normal.png)}
+header .header-gcba h2.slogan{font-family:"Gotham Medium","Helvetica Neue","Helvetica",sans-serif;float:right;font-size:13px;margin-top:12px;letter-spacing:-1px;color:#000;font-weight:bold;line-height:12px;text-transform:uppercase;}
 
 h1, h2 {
     font-style:                     normal;
