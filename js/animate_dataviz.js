@@ -20,9 +20,14 @@ var AnimateDataviz;
 
     AnimateDataviz.$panels = $('.panel');
     
+    //Counters
     AnimateDataviz.$usuarios;
     AnimateDataviz.$recorridos;
     AnimateDataviz.$kms;
+
+    //Convertions
+    AnimateDataviz.$colon;
+    AnimateDataviz.$luna;
 
     window.odometerOptions = {
           auto: false,
@@ -69,17 +74,28 @@ var AnimateDataviz;
           el: document.querySelector('#kms'),
           value: 0
         });
+
+        var d = new Odometer({
+          el: document.querySelector('#teatro-colon'),
+          value: 0
+        });
+
+        var e = new Odometer({
+          el: document.querySelector('#viaje-luna'),
+          value: 0
+        });
+
         AnimateDataviz.$usuarios = $('#usuarios');
         AnimateDataviz.$recorridos = $('#recorridos');
         AnimateDataviz.$kms = $('#kms');
+
+        AnimateDataviz.$colon = $('#teatro-colon');
+        AnimateDataviz.$luna = $('#viaje-luna');
     };
 
     AnimateDataviz.start = function(){
         AnimateDataviz.startOdometers();
         AnimateDataviz.graph.start();
-        /*AnimateDataviz.$usuarios.html(85793);
-        AnimateDataviz.$recorridos.html(1815274);
-        AnimateDataviz.$kms.html(5794413);*/
         AnimateDataviz.updateNumbers();
         setInterval(AnimateDataviz.everyStart,AnimateDataviz.duration+AnimateDataviz.pause);
     };
@@ -112,6 +128,7 @@ var AnimateDataviz;
     AnimateDataviz.updateUsuarios = function(i){
         if(AnimateDataviz.usuarios_mes[i]){
             AnimateDataviz.$usuarios.html(AnimateDataviz.usuarios_mes[i].usuarios_acum);
+            AnimateDataviz.$colon.html(Math.round(AnimateDataviz.usuarios_mes[i].usuarios_acum/3500));
             return true;
         }
         return false;
@@ -120,6 +137,7 @@ var AnimateDataviz;
     AnimateDataviz.updateKms = function(i){
         if(AnimateDataviz.kms_mes[i]){
             AnimateDataviz.$kms.html(Math.round(AnimateDataviz.kms_mes[i].trDistance_Accum));
+            AnimateDataviz.$luna.html(Math.round(AnimateDataviz.kms_mes[i].trDistance_Accum/386160));
             return true;
         }
         return false;
