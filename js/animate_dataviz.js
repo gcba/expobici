@@ -9,7 +9,7 @@ var AnimateDataviz;
     AnimateDataviz.graph;
     AnimateDataviz.map;
 
-    AnimateDataviz.duration = 1000 * 60;
+    AnimateDataviz.duration = 1000 * 120;
 
     AnimateDataviz.pause = 1000 * 10 ;
 
@@ -31,7 +31,6 @@ var AnimateDataviz;
     AnimateDataviz.$luna;
 
     //Current
-    AnimateDataviz.$fecha_d = $('#current_day');
     AnimateDataviz.$fecha_m = $('#current_month');
     AnimateDataviz.$fecha_y = $('#current_year');    
 
@@ -101,11 +100,6 @@ var AnimateDataviz;
           format: '(.ddd),dd'
         });
 
-        var f = new Odometer({
-          el: document.querySelector('#current_day'),
-          value: 0,
-          format: '(.ddd),dd'
-        });
 
         var g = new Odometer({
           el: document.querySelector('#current_month'),
@@ -126,7 +120,6 @@ var AnimateDataviz;
         AnimateDataviz.$colon = $('#teatro-colon');
         AnimateDataviz.$luna = $('#viaje-luna');
 
-        AnimateDataviz.$fecha_d = $('#current_day');
         AnimateDataviz.$fecha_m = $('#current_month');
         AnimateDataviz.$fecha_y = $('#current_year'); 
     };
@@ -169,7 +162,7 @@ var AnimateDataviz;
                 current = AnimateDataviz.clima[i].dia.split('/');
                 AnimateDataviz.$fecha_y.html(current[0]);
                 AnimateDataviz.$fecha_m.html(current[1]);
-                AnimateDataviz.$fecha_d.html(current[2]);
+
                 if(AnimateDataviz.currentPanel == 'MAP'){
                     AnimateDataviz.map.update(AnimateDataviz.clima[i].dia);
                 }
