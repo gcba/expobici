@@ -36,7 +36,9 @@ var AnimateDataviz;
 
     //Current
     AnimateDataviz.$fecha_m = $('#current_month');
-    AnimateDataviz.$fecha_y = $('#current_year');    
+    AnimateDataviz.$fecha_y = $('#current_year');  
+
+    AnimateDataviz.$hito = $('#hito-container');    
 
     AnimateDataviz.meses= {
       '01':'Enero',
@@ -66,6 +68,7 @@ var AnimateDataviz;
           .defer(d3.csv, 'data/UsuariosXMes.csv')
           .defer(d3.csv, 'data/biciKmMes.csv')
           .defer(d3.csv, 'data/clima.csv')
+          .defer(d3.csv, 'data/hitos.csv')
           .awaitAll(AnimateDataviz.filesLoaded);
 
     };
@@ -76,6 +79,11 @@ var AnimateDataviz;
         AnimateDataviz.usuarios_mes = results[2];
         AnimateDataviz.kms_mes = results[3];
         AnimateDataviz.clima = results[4];
+        AnimateDataviz.hitos = d3.nest()
+            .key(function(d) { return d.Fecha; })
+            .rollup(function(d) { return d[0]; })
+            .map(results[5],d3.map);
+
         AnimateDataviz.graph = d3.animate_dataviz('graph-container',
                 AnimateDataviz.stations,
                 AnimateDataviz.data_acum,
@@ -83,7 +91,9 @@ var AnimateDataviz;
                 AnimateDataviz.pause,
                 AnimateDataviz.usuarios_mes);
 
-        AnimateDataviz.map = d3.animate_map('map-container',AnimateDataviz.stations);
+        AnimateDataviz.map = d3.animate_map('map-container',
+                AnimateDataviz.stations,
+                AnimateDataviz.hitos);
 
         AnimateDataviz.start();
     };
@@ -163,6 +173,7 @@ var AnimateDataviz;
         var current;
         AnimateDataviz.intervalIDDays = setInterval(function(){
             if(AnimateDataviz.clima[i]){
+
                 current = AnimateDataviz.clima[i].dia.split('/');
 
                 if(AnimateDataviz.currentMonth!=AnimateDataviz.meses[current[1]]){
@@ -181,6 +192,10 @@ var AnimateDataviz;
 
                 if(AnimateDataviz.currentPanel == 'MAP'){
                     AnimateDataviz.map.update(AnimateDataviz.clima[i].dia);
+                    if( AnimateDataviz.hitos.get(current[1]+'/'+current[2]+'/'+current[0]) ){
+                        AnimateDataviz.$hito.find('#hito').hide().html(AnimateDataviz.hitos.get(current[1]+'/'+current[2]+'/'+current[0]).Hito).fadeIn();
+                        AnimateDataviz.$hito.find('#hito-fecha').hide().html(current[2] +' de ' + AnimateDataviz.meses[current[1]] +' de '+current[0]).fadeIn();
+                    }
                 }
                 i++;
             } else {
@@ -226,11 +241,12 @@ var AnimateDataviz;
     };
 
     AnimateDataviz.updateMap = function(d){
-        //TODO
+        AnimateDataviz.$hito.show();
     };
 
     AnimateDataviz.clearMap = function(){
         AnimateDataviz.map.clear();
+        AnimateDataviz.$hito.hide();
     };
     
     AnimateDataviz.everyStart = function(){
