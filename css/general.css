@@ -252,6 +252,40 @@ h2 {
     background:                     url(../img/ribbon-kms.png) no-repeat center center;
 }
 
+.date {
+    text-align:                     center;
+    margin:                         0 auto;
+    display:                        block;
+    padding:                        5px;
+    background-color:               #ffffff;
+    color:                          #5cdbb0;
+
+    width:                          270px;
+    height:                         120px;
+
+    -webkit-transition:             all .1s ease-in-out;
+
+    text-decoration:                none;
+
+    -ms-filter:                     "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter:                         alpha(opacity=100);
+    -moz-opacity:                   1;
+    -khtml-opacity:                 1;
+    opacity:                        1    
+}
+
+.date .referemce {
+    display: block;
+    width: 100%;
+}
+
+.date .count {
+    display: block;
+}
+
+.date .odometer-formatting-mark {
+    display: none;
+}
 
 
 .widget {
