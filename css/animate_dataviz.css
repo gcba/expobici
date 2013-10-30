@@ -87,3 +87,23 @@ line.time {
 #numbers-container .span6{
   text-align: center;
 }
+
+text.label-anio {
+  fill:#000;
+  font-weight: bold;
+}
+
+text.label-anio.disabled {
+  fill:#DDD;
+  font-weight: normal;
+}
+
+text.label-estacion {
+  fill:#000;
+  font-weight: bold;
+}
+
+text.label-estacion.disabled {
+  fill:#DDD;
+  font-weight: normal;
+}

@@ -9,7 +9,7 @@ var AnimateDataviz;
     AnimateDataviz.graph;
     AnimateDataviz.map;
 
-    AnimateDataviz.duration = 1000 * 60;
+    AnimateDataviz.duration = 1000 * 20;
 
     AnimateDataviz.pause = 1000 * 10 ;
 

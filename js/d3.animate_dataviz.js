@@ -1,6 +1,6 @@
 d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, users) {
 
-	var margin = {top: 20, right: 20, bottom: 30, left: 10},
+	var margin = {top: 20, right: 20, bottom: 30, left: 20},
 	    width = 1080 - margin.left - margin.right,
 	    height = 350 - margin.top - margin.bottom;
 
