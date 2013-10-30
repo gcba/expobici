@@ -33,6 +33,8 @@ d3.animate_map = function(containerId, stations) {
 	var yValue = 20,
 		label_gap = 20;
 
+	var iconSize = 40;
+
     function draw(){
 
 	   	svg.append("image")
@@ -52,21 +54,21 @@ d3.animate_map = function(containerId, stations) {
 			.attr("class", "estaciones-txt");
 
 		var circulos = estaciones
-			.selectAll('circle.estacion')
+			.selectAll('image.estacion')
 			.data(stations)
 			.enter()
-			.append("circle")
-			.attr("id", function(d){
-				return d.id;
-			})
-			.attr("class", function(d){
+			.append("image")
+		    .attr("xlink:href", "img/bici.svg")
+		    .attr("width", 0)
+		    .attr("height", 0)
+   		    .attr("opacity", 0)
+		    .attr("class", function(d){
 				return "estacion estacion-"+d.id;
 			})
-			.attr("transform", function(d) {
-				return "translate(" + projection([d.clong,d.clat]) + ")";
-			})
-			.attr('stroke-width',3)
-			.attr("r",0);
+		    .attr("transform", function(d) {
+		    	var p = projection([d.clong,d.clat]);
+				return "translate(" + (p[0]-iconSize/2) + ',' + (p[1]-iconSize/2) + ")";
+			});
 
 		nested_listado.forEach(function(ix1,el1){
 			estacionesLabel
@@ -111,9 +113,13 @@ d3.animate_map = function(containerId, stations) {
 				st.forEach(function(d){
 					svg.select('.estacion-'+d.id)
 						.transition()
-						.attr("r",100)
+						.attr("opacity",.5)
+						.attr("width",iconSize*2)
+						.attr("height",iconSize*2)
 						.transition()
-						.attr("r",10);
+						.attr("opacity",1)
+						.attr("width",iconSize)
+						.attr("height",iconSize);
 
 					svg.select('.label-estacion-'+d.id.trim())
 						.classed('disabled', false);
@@ -122,7 +128,7 @@ d3.animate_map = function(containerId, stations) {
 			}
 		},
 		clear: function(){
-			svg.selectAll('circle.estacion').attr("r",0);
+			svg.selectAll('image.estacion').attr("opacity",0).attr("width",0).attr("height",0);
 			svg.selectAll('text.label-estacion').classed("disabled",true);
 			svg.selectAll('text.label-anio').classed("disabled",true);
 		}
