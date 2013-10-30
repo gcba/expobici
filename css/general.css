@@ -133,7 +133,8 @@ header .header-gcba:hover,header .header-gcba:active,header .header-gcba.active,
 header .header-gcba:active,header .header-gcba.active{background-color:#bda700}
 header .header-gcba .container{-webkit-opacity:.7;-moz-opacity:.7;opacity:.7}
 header .header-gcba .logo{float:left;width:172px;height:33px;background:url(../img/logo-normal.png)}
-header .header-gcba h2.slogan{font-family:"Gotham Medium","Helvetica Neue","Helvetica",sans-serif;float:right;font-size:13px;margin-top:12px;letter-spacing:-1px;color:#000;font-weight:bold;line-height:12px;text-transform:uppercase;}
+header .header-gcba .slogan{
+    display:block;width:115px;height:11px;background:url(../img/slogan.png);float:right;margin-top:12px;text-indent: -5000px;}
 
 .site-footer{position:relative;*zoom:1;color:#fff;padding:40px 10px;height:inherit;background-color:#333;background-image:none;filter:none;font-size:12px}
 .site-footer a{color:#ffbd04}
@@ -157,7 +158,13 @@ h1 {
     font-size:                      2.438em;
     letter-spacing:                 0em;
     line-height:                    1em;
+    padding-bottom:                 10px;
     margin-top:                     7px;
+    display:                        block;
+    text-indent:                    -5000px;
+    background-image:               url(../img/type-h1.png);
+    background-position:            center center;
+    background-repeat:              no-repeat;
 }
 
 h2 {
@@ -166,6 +173,11 @@ h2 {
     letter-spacing:                 -.1em;
     line-height:                    1em;
     margin-top:                     7px;
+    display:                        block;
+    text-indent:                    -5000px;
+    background-image:               url(../img/type-h2.png);
+    background-position:            center center;
+    background-repeat:              no-repeat;
 }
 
 
