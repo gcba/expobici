@@ -1,60 +1,85 @@
 /* dataviz */
 
+.tick {
+  font-family:                    "Gotham Medium", "Arial";
+  font-style:                     normal;
+  fill:                           #444444;
+}
+
 .axis path,
 .axis line {
   fill: none;
-  stroke: #000;
+  stroke: #444444
   shape-rendering: crispEdges;
+
 }
 
+
+
 .y text{
-  fill: steelblue;
-  font-size: 20px;
-  text-shadow: 2px 2px white;
+  fill:                           #444444;
+  font-family:                    "Gotham Medium", "Arial";
+  font-style:                     normal;
+  font-size:                      0.9em;
+  -webkit-filter: drop-shadow( 5px 5px 5px #e5e5e5 );
+            filter: drop-shadow( 5px 5px 5px #e5e5e5 );
 }
 
 .y line,
 .y path{
-  stroke:steelblue;
+  stroke:#38154F;
   stroke-width: 3px;
 }
 
 .line-usuarios {
   fill: none;
-  stroke: steelblue;
+  stroke: #38154F;
   stroke-width: 5px;
 }
 
 .reference-graph {
   font-size: 40px;
   font-weight: bold;
-  text-shadow: 2px 2px white;  
+}
+
+.reference-viajes, .reference-usuarios {
+    display:                        block;
+    margin:                         0 auto;
+    font-family:                    "Gotham Medium", "Arial";
+    font-style:                     normal;
+    font-size:                      1.6em;
 }
 
 .reference-viajes {
-  color: steelblue;
+    color:                          #38154F;
 }
 
-.reference-usuarios{
-  color:orange;
+.reference-usuarios {
+
+  color:                            #FF5A06;
 }
 
 .y2 text{
-  fill: orange;
-  font-size: 20px;
-  text-shadow: 2px 2px white;
+  fill:                           #444444;
+  font-family:                    "Gotham Medium", "Arial";
+  font-style:                     normal;
+  font-size:                      .9em;
 }
 
 .y2 line,
 .y2 path{
-  stroke:orange;
+  stroke: #FF5A06;
   stroke-width: 3px;
 }
 
 .line-recorridos {
   fill: none;
-  stroke: orange;
+  stroke: #FF5A06;
   stroke-width: 5px;
+}
+
+.x {
+    font-size:                      0.7em;
 }
 
 .x.axis path {
