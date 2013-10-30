@@ -29,12 +29,14 @@
 .y path{
   stroke:#38154F;
   stroke-width: 3px;
+  shape-rendering: crispEdges;
 }
 
 .line-usuarios {
   fill: none;
   stroke: #38154F;
-  stroke-width: 5px;
+  stroke-width: 6px;
+  opacity: 0.8;
 }
 
 .reference-graph {
@@ -70,12 +72,14 @@
 .y2 path{
   stroke: #FF5A06;
   stroke-width: 3px;
+  shape-rendering: crispEdges;
 }
 
 .line-recorridos {
   fill: none;
   stroke: #FF5A06;
-  stroke-width: 5px;
+  stroke-width: 6px;
+  opacity: 0.8;
 }
 
 .x {
@@ -83,7 +87,10 @@
 }
 
 .x.axis path {
-  display: none;
+  fill: none;
+  stroke: #444444;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
 }
 
 line.estacion {
@@ -95,9 +102,10 @@ line.estacion {
 
 line.time {
   fill: none;
-  stroke: blue;
-  stroke-width: 5px;
-  opacity: .5;
+  stroke: white;
+  stroke-width: 1px;
+  opacity: .9;
+  shape-rendering: crispEdges;
 }
 
 .panel {
