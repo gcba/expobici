@@ -19,6 +19,10 @@ var AnimateDataviz;
 
     AnimateDataviz.currentPanel = 'NUMBERS';
 
+    AnimateDataviz.currentMonth = '';
+
+    AnimateDataviz.currentYear = '';
+
     AnimateDataviz.$panels = $('.panel');
     
     //Counters
@@ -33,6 +37,21 @@ var AnimateDataviz;
     //Current
     AnimateDataviz.$fecha_m = $('#current_month');
     AnimateDataviz.$fecha_y = $('#current_year');    
+
+    AnimateDataviz.meses= {
+      '01':'Enero',
+      '02':'Febrero',
+      '03':'Marzo',
+      '04':'Abril',
+      '05':'Mayo',
+      '06':'Junio',
+      '07':'Julio',
+      '08':'Agosto',
+      '09':'Septiembre',
+      '10':'Octubre',
+      '11':'Noviembre',
+      '12':'Diciembre'
+    };
 
     window.odometerOptions = {
           auto: false,
@@ -100,19 +119,6 @@ var AnimateDataviz;
           format: '(.ddd),dd'
         });
 
-
-        var g = new Odometer({
-          el: document.querySelector('#current_month'),
-          value: 0,
-          format: '(.ddd),dd'
-        });
-
-        var h = new Odometer({
-          el: document.querySelector('#current_year'),
-          value: 0,
-          format: '(.ddd),dd'
-        });
-
         AnimateDataviz.$usuarios = $('#usuarios');
         AnimateDataviz.$recorridos = $('#recorridos');
         AnimateDataviz.$kms = $('#kms');
@@ -120,8 +126,6 @@ var AnimateDataviz;
         AnimateDataviz.$colon = $('#teatro-colon');
         AnimateDataviz.$luna = $('#viaje-luna');
 
-        AnimateDataviz.$fecha_m = $('#current_month');
-        AnimateDataviz.$fecha_y = $('#current_year'); 
     };
 
     AnimateDataviz.start = function(){
@@ -160,8 +164,20 @@ var AnimateDataviz;
         AnimateDataviz.intervalIDDays = setInterval(function(){
             if(AnimateDataviz.clima[i]){
                 current = AnimateDataviz.clima[i].dia.split('/');
-                AnimateDataviz.$fecha_y.html(current[0]);
-                AnimateDataviz.$fecha_m.html(current[1]);
+
+                if(AnimateDataviz.currentMonth!=AnimateDataviz.meses[current[1]]){
+                    AnimateDataviz.currentMonth = AnimateDataviz.meses[current[1]];
+                    AnimateDataviz.$fecha_m.fadeOut('slow',function(){
+                        $(this).html(AnimateDataviz.meses[current[1]]).fadeIn();
+                    });
+                }
+
+                if(AnimateDataviz.currentYear!=current[0]){
+                    AnimateDataviz.currentYear = current[0];
+                    AnimateDataviz.$fecha_y.fadeOut('slow',function(){
+                        $(this).html(current[0]).fadeIn();
+                    });
+                }
 
                 if(AnimateDataviz.currentPanel == 'MAP'){
                     AnimateDataviz.map.update(AnimateDataviz.clima[i].dia);
