@@ -11,7 +11,7 @@ var AnimateDataviz;
 
     AnimateDataviz.duration = 1000 * 120;
 
-    AnimateDataviz.pause = 1000 * 5;
+    AnimateDataviz.pause = 1000 * 10;
 
     AnimateDataviz.stations;
         
@@ -33,6 +33,9 @@ var AnimateDataviz;
     //Convertions
     AnimateDataviz.$colon;
     AnimateDataviz.$luna;
+    AnimateDataviz.$co2;
+    AnimateDataviz.$calorias;
+    AnimateDataviz.$hamburguesas;
 
     //Current
     AnimateDataviz.$fecha_m = $('#current_month');
@@ -129,12 +132,33 @@ var AnimateDataviz;
           format: '(.ddd),dd'
         });
 
+        var f = new Odometer({
+          el: document.querySelector('#co2'),
+          value: 0
+        });
+
+        var g = new Odometer({
+          el: document.querySelector('#calorias'),
+          value: 0,
+          format: '(.ddd),dd'
+        });
+
+        var g = new Odometer({
+          el: document.querySelector('#hamburguesas'),
+          value: 0,
+          format: '(.ddd),dd'
+        });
+
+
         AnimateDataviz.$usuarios = $('#usuarios');
         AnimateDataviz.$recorridos = $('#recorridos');
         AnimateDataviz.$kms = $('#kms');
 
         AnimateDataviz.$colon = $('#teatro-colon');
         AnimateDataviz.$luna = $('#viaje-luna');
+        AnimateDataviz.$co2 = $('#co2');
+        AnimateDataviz.$calorias = $('#calorias');
+        AnimateDataviz.$hamburguesas = $('#hamburguesas');
 
     };
 
@@ -225,7 +249,10 @@ var AnimateDataviz;
     AnimateDataviz.updateKms = function(i){
         if(AnimateDataviz.kms_mes[i]){
             AnimateDataviz.$kms.html(Math.round(AnimateDataviz.kms_mes[i].trDistance_Accum));
-            AnimateDataviz.$luna.html(Math.round(AnimateDataviz.kms_mes[i].trDistance_Accum/386160));
+            AnimateDataviz.$luna.html(Math.round(AnimateDataviz.kms_mes[i].trDistance_Accum/386160)); //Viaje ida
+            AnimateDataviz.$co2.html( Math.round((AnimateDataviz.kms_mes[i].trDistance_Accum*0.156)/1000) ); //Toneladas
+            AnimateDataviz.$calorias.html(Math.round((AnimateDataviz.kms_mes[i].trDistance_Accum*58.5)/1000000 )); //Millones
+            AnimateDataviz.$hamburguesas.html(Math.round((AnimateDataviz.kms_mes[i].trDistance_Accum*58.5*0.0023) ));
             return true;
         }
         return false;
@@ -235,9 +262,20 @@ var AnimateDataviz;
         AnimateDataviz.$usuarios.html(1);
         AnimateDataviz.$recorridos.html(1);
         AnimateDataviz.$kms.html(1);
+        AnimateDataviz.$co2.html(1);
+        AnimateDataviz.$calorias.html(1);
+        AnimateDataviz.$hamburguesas.html(1);
+        AnimateDataviz.$colon.html(1);
+        AnimateDataviz.$luna.html(1);
+
         AnimateDataviz.$usuarios.html(0);
         AnimateDataviz.$recorridos.html(0);
         AnimateDataviz.$kms.html(0);
+        AnimateDataviz.$co2.html(0);
+        AnimateDataviz.$calorias.html(0);
+        AnimateDataviz.$hamburguesas.html(0);
+        AnimateDataviz.$colon.html(0);
+        AnimateDataviz.$luna.html(0);
     };
 
     AnimateDataviz.updateMap = function(d){
@@ -250,7 +288,18 @@ var AnimateDataviz;
     };
     
     AnimateDataviz.everyStart = function(){
+        clearInterval(AnimateDataviz.intervalIDDays);
+        clearInterval(AnimateDataviz.intervalID);
+        AnimateDataviz.currentYear = '2010';
+        AnimateDataviz.$fecha_y.hide().html('2010').fadeIn();
+        AnimateDataviz.$fecha_m.hide().html('DICIEMBRE').fadeIn();
         AnimateDataviz.switchPanel();
+        AnimateDataviz.updateDays();
+        AnimateDataviz.graph.start();
+    };
+
+    AnimateDataviz.switchPanel = function(){
+        AnimateDataviz.$panels.toggleClass('panel-hide');
         if($('.panel').not('.panel-hide').is('#map-container')){
             AnimateDataviz.currentPanel = 'MAP';
             AnimateDataviz.clearNumbers();
@@ -260,12 +309,6 @@ var AnimateDataviz;
             AnimateDataviz.clearMap();
             AnimateDataviz.updateNumbers();
         }
-        AnimateDataviz.updateDays();
-        AnimateDataviz.graph.start();
-    };
-
-    AnimateDataviz.switchPanel = function(){
-        AnimateDataviz.$panels.toggleClass('panel-hide');
     };
 
 })(window, document,jQuery, d3);

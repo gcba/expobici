@@ -117,6 +117,10 @@ line.time {
   display: none;
 }
 
+#map-container {
+  margin-top: 40px;
+}
+
 #numbers-container .span6{
   text-align: center;
 }

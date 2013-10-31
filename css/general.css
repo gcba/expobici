@@ -11,10 +11,10 @@ html {
 */
 }
 a {  
-    outline:0
+    outline:0;
 }
 input::-moz-focus-inner {
-    border:0
+    border:0;
 }
 
 body {
@@ -27,7 +27,7 @@ body {
     /*background-image: url(/refe1.png);
     background-position: top left;
     background-repeat: no-repeat;*/
-    padding-top: 140px;
+    padding-top: 100px;
 }
 
 @font-face {
@@ -99,6 +99,8 @@ body {
 }
 .viz-heart:before {
     content: "\e602";
+    line-height: 126px;
+    font-size: 64px;
 }
 .viz-colon:before {
     line-height: 115px;
@@ -144,7 +146,7 @@ header .header-gcba .slogan{
 
 .title-container {
     display:                        block;
-    padding-bottom:                  450px
+    margin-bottom: 30px;
 }
 
 h1, h2 {
@@ -211,7 +213,7 @@ h2 {
     filter:                         alpha(opacity=100);
     -moz-opacity:                   1;
     -khtml-opacity:                 1;
-    opacity:                        1
+    opacity:                        1;
 }
 
 .main-widget .mask {
@@ -249,7 +251,7 @@ h2 {
     text-indent:                    -5000px;
     display:                        block;
     width:                          330px;
-    height:                         130px
+    height:                         130px;
 }
 
 .main-widget .usuarios {
@@ -272,7 +274,7 @@ h2 {
     color:                          #5cdbb0;
 
     width:                          270px;
-    height:                         120px;
+    height:                         80px;
 
     -webkit-transition:             all .1s ease-in-out;
 
@@ -282,7 +284,7 @@ h2 {
     filter:                         alpha(opacity=100);
     -moz-opacity:                   1;
     -khtml-opacity:                 1;
-    opacity:                        1    
+    opacity:                        1;    
 }
 
 .date .referemce {
@@ -324,7 +326,8 @@ h2 {
     margin:                         0 auto;
     font-family:                    "Gotham Book", "Arial";
     font-style:                     normal;
-    font-size:                      1.2em
+    font-size:                      1.4em;
+    color:                          #333;
 }
 
 .circle {
@@ -348,10 +351,36 @@ h2 {
     filter:                         alpha(opacity=100);
     -moz-opacity:                   1;
     -khtml-opacity:                 1;
-    opacity:                        1
+    opacity:                        1;
 }
 
 .odometer-formatting-mark {
     letter-spacing: .01em;
 }
 
+#hito-container .span12{
+    height: 200px;
+    text-align: center;
+    background-color: #5CDBB0;
+    border-width: 10px;
+    border-color: #FFFFFF;
+    border-style: solid;
+    border-radius:50px;
+    margin-bottom: 50px;
+}
+
+#hito-container #hito{
+    font-family: "bebas_neueregular", "Gotham Medium", "Arial";
+    font-style: normal;
+    font-size: 3.2em;
+    line-height: 1em;
+    margin-top: 7px;
+}
+
+#hito-container #hito-fecha{
+    line-height: 1em;
+    margin-top: 45px;
+    font-family: "Gotham Book", "Arial";
+    font-style: normal;
+    font-size: 2.2em;
+}
