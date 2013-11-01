@@ -107,10 +107,10 @@ body {
     font-size: 50px;
     content: "\e603";
 }
-.viz-subte:before {
+.viz-chancho:before {
     line-height: 115px;
     font-size: 65px;
-    content: "\e604";
+    content: "\e606";
 }
 .viz-co2:before {
     line-height: 115px;
@@ -120,7 +120,7 @@ body {
 .viz-hamburguesa:before {
     line-height: 120px;
     font-size: 50px;
-    content: "\e606";
+    content: "\e604";
 }
 .viz-argentina:before {
     content: "\e607";
@@ -392,3 +392,16 @@ h2 {
     font-style: normal;
     font-size: 2.2em;
 }
+
+.institucional {
+    padding-top: 53px;
+}
+
+.institucional .video {
+    padding: 0px;
+}
+
+
+
+
+
