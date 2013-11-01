@@ -11,7 +11,7 @@ var AnimateDataviz;
 
     AnimateDataviz.duration = 1000 * 120;
 
-    AnimateDataviz.pause = 1000 * 5;
+    AnimateDataviz.pause = 1000 * 10;
 
     AnimateDataviz.stations;
         
@@ -19,9 +19,9 @@ var AnimateDataviz;
 
     AnimateDataviz.currentPanel = 'NUMBERS';
 
-    AnimateDataviz.currentMonth = '';
+    AnimateDataviz.currentMonth = 'Diciembre';
 
-    AnimateDataviz.currentYear = '';
+    AnimateDataviz.currentYear = '2010';
 
     AnimateDataviz.$panels = $('.panel');
     
@@ -33,6 +33,10 @@ var AnimateDataviz;
     //Convertions
     AnimateDataviz.$colon;
     AnimateDataviz.$luna;
+    AnimateDataviz.$co2;
+    AnimateDataviz.$calorias;
+    AnimateDataviz.$hamburguesas;
+    AnimateDataviz.$ahorro;
 
     //Current
     AnimateDataviz.$fecha_m = $('#current_month');
@@ -129,12 +133,39 @@ var AnimateDataviz;
           format: '(.ddd),dd'
         });
 
+        var f = new Odometer({
+          el: document.querySelector('#co2'),
+          value: 0
+        });
+
+        var g = new Odometer({
+          el: document.querySelector('#calorias'),
+          value: 0,
+          format: '(.ddd),dd'
+        });
+
+        var h = new Odometer({
+          el: document.querySelector('#hamburguesas'),
+          value: 0,
+          format: '(.ddd),dd'
+        });
+
+        var i = new Odometer({
+          el: document.querySelector('#ahorro'),
+          value: 0,
+          format: '(.ddd),dd'
+        });
+
         AnimateDataviz.$usuarios = $('#usuarios');
         AnimateDataviz.$recorridos = $('#recorridos');
         AnimateDataviz.$kms = $('#kms');
 
         AnimateDataviz.$colon = $('#teatro-colon');
         AnimateDataviz.$luna = $('#viaje-luna');
+        AnimateDataviz.$co2 = $('#co2');
+        AnimateDataviz.$calorias = $('#calorias');
+        AnimateDataviz.$hamburguesas = $('#hamburguesas');
+        AnimateDataviz.$ahorro = $('#ahorro');
 
     };
 
@@ -151,44 +182,50 @@ var AnimateDataviz;
     AnimateDataviz.updateNumbers = function(){
         var r = AnimateDataviz.duration / AnimateDataviz.data_acum.length;
         var i = 0;
+        var current;
         AnimateDataviz.intervalID = setInterval(function(){
-            if(
-                AnimateDataviz.updateRecorridos(i) && 
-                AnimateDataviz.updateUsuarios(i) &&
-                AnimateDataviz.updateKms(i)
-                ){
+
+            if(AnimateDataviz.data_acum[i]){
+                current = AnimateDataviz.data_acum[i].anioMes;
+
+                AnimateDataviz.currentMonth = AnimateDataviz.meses[('0' + (current.getMonth()+1)).slice(-2)];
+                AnimateDataviz.$fecha_m.fadeOut('slow',function(){
+                    $(this).html(AnimateDataviz.meses[('0' + (current.getMonth()+1)).slice(-2)]).fadeIn();
+                });
+
+                if(AnimateDataviz.currentYear != current.getFullYear()){
+                    AnimateDataviz.currentYear = current.getFullYear();
+                    AnimateDataviz.$fecha_y.fadeOut('slow',function(){
+                        $(this).html(current.getFullYear()).fadeIn();
+                    });
+                }
+            
+                if(AnimateDataviz.currentPanel == 'NUMBERS'){
+                    AnimateDataviz.updateRecorridos(i); 
+                    AnimateDataviz.updateUsuarios(i);
+                    AnimateDataviz.updateKms(i);
+                }
+
                 i++;
+
             } else {
-                i = 0;
                 clearInterval(AnimateDataviz.intervalID);
             }
+
         },r);
     };
 
     AnimateDataviz.intervalIDDays;
 
     AnimateDataviz.updateDays = function(){
-        var r = AnimateDataviz.duration / AnimateDataviz.clima.length;
+        var r = Math.round(AnimateDataviz.duration / AnimateDataviz.clima.length);
         var i = 0;
         var current;
         AnimateDataviz.intervalIDDays = setInterval(function(){
+
             if(AnimateDataviz.clima[i]){
 
                 current = AnimateDataviz.clima[i].dia.split('/');
-
-                if(AnimateDataviz.currentMonth!=AnimateDataviz.meses[current[1]]){
-                    AnimateDataviz.currentMonth = AnimateDataviz.meses[current[1]];
-                    AnimateDataviz.$fecha_m.fadeOut('slow',function(){
-                        $(this).html(AnimateDataviz.meses[current[1]]).fadeIn();
-                    });
-                }
-
-                if(AnimateDataviz.currentYear!=current[0]){
-                    AnimateDataviz.currentYear = current[0];
-                    AnimateDataviz.$fecha_y.fadeOut('slow',function(){
-                        $(this).html(current[0]).fadeIn();
-                    });
-                }
 
                 if(AnimateDataviz.currentPanel == 'MAP'){
                     AnimateDataviz.map.update(AnimateDataviz.clima[i].dia);
@@ -198,10 +235,10 @@ var AnimateDataviz;
                     }
                 }
                 i++;
-            } else {
-                i = 0;
+            }  else {
                 clearInterval(AnimateDataviz.intervalIDDays);
             }
+
         },r);
     };
 
@@ -225,7 +262,11 @@ var AnimateDataviz;
     AnimateDataviz.updateKms = function(i){
         if(AnimateDataviz.kms_mes[i]){
             AnimateDataviz.$kms.html(Math.round(AnimateDataviz.kms_mes[i].trDistance_Accum));
-            AnimateDataviz.$luna.html(Math.round(AnimateDataviz.kms_mes[i].trDistance_Accum/386160));
+            AnimateDataviz.$luna.html(Math.round(AnimateDataviz.kms_mes[i].trDistance_Accum/386160)); //Viaje ida
+            AnimateDataviz.$co2.html( Math.round((AnimateDataviz.kms_mes[i].trDistance_Accum*0.156)/1000) ); //Toneladas
+            AnimateDataviz.$calorias.html(Math.round((AnimateDataviz.kms_mes[i].trDistance_Accum*58.5)/1000000 )); //Millones
+            AnimateDataviz.$hamburguesas.html(Math.round((AnimateDataviz.kms_mes[i].trDistance_Accum*58.5*0.0023) ));
+            AnimateDataviz.$ahorro.html(Math.round(AnimateDataviz.kms_mes[i].trDistance_Accum/1.30)); 
             return true;
         }
         return false;
@@ -235,9 +276,22 @@ var AnimateDataviz;
         AnimateDataviz.$usuarios.html(1);
         AnimateDataviz.$recorridos.html(1);
         AnimateDataviz.$kms.html(1);
+        AnimateDataviz.$co2.html(1);
+        AnimateDataviz.$calorias.html(1);
+        AnimateDataviz.$hamburguesas.html(1);
+        AnimateDataviz.$colon.html(1);
+        AnimateDataviz.$luna.html(1);
+        AnimateDataviz.$ahorro.html(1);
+
         AnimateDataviz.$usuarios.html(0);
         AnimateDataviz.$recorridos.html(0);
         AnimateDataviz.$kms.html(0);
+        AnimateDataviz.$co2.html(0);
+        AnimateDataviz.$calorias.html(0);
+        AnimateDataviz.$hamburguesas.html(0);
+        AnimateDataviz.$colon.html(0);
+        AnimateDataviz.$luna.html(0);
+        AnimateDataviz.$ahorro.html(0);
     };
 
     AnimateDataviz.updateMap = function(d){
@@ -250,22 +304,28 @@ var AnimateDataviz;
     };
     
     AnimateDataviz.everyStart = function(){
+        AnimateDataviz.graph.start();
+        clearInterval(AnimateDataviz.intervalIDDays);
+        clearInterval(AnimateDataviz.intervalID);
+        AnimateDataviz.currentYear = '2010';
+        AnimateDataviz.$fecha_y.hide().html('2010').fadeIn();
+        AnimateDataviz.$fecha_m.hide().html('Diciembre').fadeIn();
         AnimateDataviz.switchPanel();
+        AnimateDataviz.updateDays();
+    };
+
+    AnimateDataviz.switchPanel = function(){
+        AnimateDataviz.$panels.toggleClass('panel-hide');
         if($('.panel').not('.panel-hide').is('#map-container')){
             AnimateDataviz.currentPanel = 'MAP';
             AnimateDataviz.clearNumbers();
             AnimateDataviz.updateMap();
+            AnimateDataviz.updateNumbers();
         } else {
             AnimateDataviz.currentPanel = 'NUMBERS';
             AnimateDataviz.clearMap();
             AnimateDataviz.updateNumbers();
         }
-        AnimateDataviz.updateDays();
-        AnimateDataviz.graph.start();
-    };
-
-    AnimateDataviz.switchPanel = function(){
-        AnimateDataviz.$panels.toggleClass('panel-hide');
     };
 
 })(window, document,jQuery, d3);

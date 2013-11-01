@@ -7,6 +7,10 @@
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+            <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+            <link rel="stylesheet" href="css/bootstrap-responsive.min.css" type="text/css">
+            <link rel="stylesheet" href="css/mapa_usig.css" type="text/css">
+
             <!--Etiquetas HTML5 para IE8 hacia abajo-->
             <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
             <!-- <script type="text/javascript">
@@ -22,17 +26,18 @@
         </head>
         <body style="">
 
-                <div class="container">
-                    Expobici - 2013
-                    <ul>
-                        <li><a href="mapa_bicis.html">Mapa Bicis</a></li>
-                        <li><a href="dataviz_circular.html">Gráfico circular</a></li>
-                        <li><a href="animate_dataviz.html">Dataviz Animada</a></li>
-                        <li><a href="mapa_interactivo.html">Mapa Interactivo</a></li>
-                        <li><a href="mapa_estatico.html">Mapa Estático</a></li>
-                    </ul>
+            <a class="control" rel="capa1" href="javascript:;">capa1</a>
+            <a class="control" rel="capa2" href="javascript:;">capa2</a>
+            <a class="control" rel="capa3" href="javascript:;">capa3</a>
 
-                </div>
-        
+            <br/>
+
+            <div id="mapa"></div>
+
+            <script type="text/javascript" src="js/libs/jquery-1.10.2.min.js"></script>
+            <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+            <script type="text/javascript" src="http://servicios.usig.buenosaires.gob.ar/usig-js/3.0/usig.MapaInteractivo.min.js"></script>
+            <script type="text/javascript" src="js/mapa_interactivo.js"></script>
+
         </body>
 </html>

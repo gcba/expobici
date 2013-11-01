@@ -6,9 +6,12 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
 
 	var parseDate = d3.time.format("%Y-%m").parse;
 	var parseDateUsuarios = d3.time.format("%Y %m").parse;
-	var parseDateEstaciones = d3.time.format("%Y-%d-%m").parse;
+	//var parseDateEstaciones = d3.time.format("%Y-%d-%m").parse;
 
 	var x = d3.time.scale()
+	    .range([0, width]);
+
+	var x2 = d3.time.scale()
 	    .range([0, width]);
 
 	var y = d3.scale.linear()
@@ -33,12 +36,12 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
 
 	var line = d3.svg.line()
 	    .x(function(d) { return x(d.anioMes); })
-	    .y(function(d) { return y(d.Record_Count); })
+	    .y(function(d) { return y(parseInt(d.Record_Count)); })
 	    .interpolate("basis");
 
 	var lineUsers = d3.svg.line()
-	    .x(function(d) { return x(d.fecha); })
-	    .y(function(d) { return y2(d.usuarios); })
+	    .x(function(d) { return x2(d.fecha); })
+	    .y(function(d) { return y2(parseInt(d.usuarios)); })
 	    .interpolate("basis");
 
 	var svg = d3.select("#"+containerId).append("svg")
@@ -72,8 +75,9 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
     function draw(){
 
 	    x.domain(d3.extent(data, function(d) { return d.anioMes; }));
-	    y.domain(d3.extent(data, function(d) { return d.Record_Count; }));
-	    y2.domain(d3.extent(users, function(d) { return d.usuarios; }));
+  	    x2.domain(d3.extent(users, function(d) { return d.fecha; }));
+	    y.domain(d3.extent(data, function(d) { return parseInt(d.Record_Count); }));
+	    y2.domain(d3.extent(users, function(d) { return parseInt(d.usuarios); }));
 
 	    svg.append("path")
 	        .datum(data)
@@ -142,7 +146,9 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
 		})
 		.attr("x2", function(d){
 		  return x(parseDate('2013-09'))
-		});
+		})
+		//.each('end',  function(d){ console.log('fin graph!!');  })
+		;
 	}
 
 	draw();
