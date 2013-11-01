@@ -305,7 +305,7 @@ h2 {
 
 .widget {
     color:                          #424242;
-    width:                          140px;
+    width:                          200px;
     height:                         290px;
     display:                        block;
     text-align:                     center !important;
@@ -356,12 +356,17 @@ h2 {
     opacity:                        1;
 }
 
+.widget .odometer-digit {
+    letter-spacing: .01em;
+    width: 10px !important;
+}
+
 .odometer-formatting-mark {
     letter-spacing: .01em;
 }
 
 #hito-container .span12{
-    height: 200px;
+    height: 310px;
     text-align: center;
     background-color: #5CDBB0;
     border-width: 10px;
@@ -369,19 +374,20 @@ h2 {
     border-style: solid;
     border-radius:50px;
     margin-bottom: 50px;
+    padding: 0 100px;
 }
 
 #hito-container #hito{
     font-family: "bebas_neueregular", "Gotham Medium", "Arial";
     font-style: normal;
-    font-size: 3.2em;
+    font-size: 4.2em;
     line-height: 1em;
-    margin-top: 7px;
+    margin-top: 40px;
 }
 
 #hito-container #hito-fecha{
     line-height: 1em;
-    margin-top: 45px;
+    margin-top: 60px;
     font-family: "Gotham Book", "Arial";
     font-style: normal;
     font-size: 2.2em;

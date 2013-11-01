@@ -19,9 +19,9 @@ var AnimateDataviz;
 
     AnimateDataviz.currentPanel = 'NUMBERS';
 
-    AnimateDataviz.currentMonth = '';
+    AnimateDataviz.currentMonth = 'DICIEMBRE';
 
-    AnimateDataviz.currentYear = '';
+    AnimateDataviz.currentYear = '2010';
 
     AnimateDataviz.$panels = $('.panel');
     
@@ -236,7 +236,6 @@ var AnimateDataviz;
                 }
                 i++;
             }  else {
-                console.log('clear!');
                 clearInterval(AnimateDataviz.intervalIDDays);
             }
 
