@@ -36,8 +36,8 @@ var MapaInteractivo;
         MapaInteractivo.capa2 = MapaInteractivo.mapa.addVectorLayer('comercios_con_beneficios', { 
                     url: "http://epok.buenosaires.gob.ar/getGeoLayer/?categoria=comercios_con_beneficios&formato=geojson",
                     symbolizer: {
-                        externalGraphic: 'http://mapa.buenosaires.gov.ar/images/markers/comercios_con_beneficios.png',
-                        backgroundGraphic: 'http://mapa.buenosaires.gov.ar/images/markers/fondos/1.png',
+                        externalGraphic: 'http://mapa.buenosaires.gov.ar/images/markers/comercio_con_beneficios.png',
+                        backgroundGraphic: 'http://mapa.buenosaires.gov.ar/images/markers/fondos/3.png',
                         pointRadius: 30
                     },
                     format: 'geojson',
