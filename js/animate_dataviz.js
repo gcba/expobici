@@ -9,7 +9,7 @@ var AnimateDataviz;
     AnimateDataviz.graph;
     AnimateDataviz.map;
 
-    AnimateDataviz.duration = 1000 * 100;
+    AnimateDataviz.duration = 1000 * 120;
 
     AnimateDataviz.pause = 1000 * 10;
 
@@ -19,7 +19,7 @@ var AnimateDataviz;
 
     AnimateDataviz.currentPanel = 'NUMBERS';
 
-    AnimateDataviz.currentMonth = 'DICIEMBRE';
+    AnimateDataviz.currentMonth = 'Diciembre';
 
     AnimateDataviz.currentYear = '2010';
 
@@ -199,19 +199,19 @@ var AnimateDataviz;
                         $(this).html(current.getFullYear()).fadeIn();
                     });
                 }
-            }
-
-            if(
-                AnimateDataviz.updateRecorridos(i) && 
-                AnimateDataviz.updateUsuarios(i) &&
-                AnimateDataviz.updateKms(i) &&
-                AnimateDataviz.currentPanel == 'NUMBERS'
-                ){
+            
+                if(AnimateDataviz.currentPanel == 'NUMBERS'){
+                    AnimateDataviz.updateRecorridos(i); 
+                    AnimateDataviz.updateUsuarios(i);
+                    AnimateDataviz.updateKms(i);
+                }
 
                 i++;
+
             } else {
                 clearInterval(AnimateDataviz.intervalID);
             }
+
         },r);
     };
 
@@ -309,7 +309,7 @@ var AnimateDataviz;
         clearInterval(AnimateDataviz.intervalID);
         AnimateDataviz.currentYear = '2010';
         AnimateDataviz.$fecha_y.hide().html('2010').fadeIn();
-        AnimateDataviz.$fecha_m.hide().html('DICIEMBRE').fadeIn();
+        AnimateDataviz.$fecha_m.hide().html('Diciembre').fadeIn();
         AnimateDataviz.switchPanel();
         AnimateDataviz.updateDays();
     };
