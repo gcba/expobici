@@ -34,7 +34,7 @@
 
 .line-usuarios {
   fill: none;
-  stroke: #38154F;
+  stroke: #FF5A06;
   stroke-width: 6px;
   opacity: 0.8;
 }
@@ -77,7 +77,7 @@
 
 .line-recorridos {
   fill: none;
-  stroke: #FF5A06;
+  stroke: #38154F;
   stroke-width: 6px;
   opacity: 0.8;
 }
