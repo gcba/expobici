@@ -16,8 +16,6 @@ var MapaInteractivo;
     MapaInteractivo.capa2 = $('#capa2');
     MapaInteractivo.capa3 = $('#capa3');
 
-    MapaInteractivo.selected = '';
-
     MapaInteractivo.init = function (){
     	MapaInteractivo.controls.on('click', MapaInteractivo.clickControl);
         MapaInteractivo.mapa = new usig.MapaInteractivo('mapa', {
@@ -26,6 +24,7 @@ var MapaInteractivo;
             includeMapSwitcher: false,
             includeToolbar: false,
             includePanZoomBar: true,
+            baseLayer: 'mapabsas_red_de_ciclovias_basico',
             onReady: function() {
                 MapaInteractivo.addLayers();
             }
@@ -34,54 +33,85 @@ var MapaInteractivo;
     };
 
     MapaInteractivo.addLayers = function(){
-        MapaInteractivo.capa1 = MapaInteractivo.mapa.addVectorLayer('bibliotecas1', { 
-                    url: "http://epok.buenosaires.gob.ar/getGeoLayer/?categoria=dependencias_culturales&actividades=22",
+        MapaInteractivo.capa2 = MapaInteractivo.mapa.addVectorLayer('comercios_con_beneficios', { 
+                    url: "http://epok.buenosaires.gob.ar/getGeoLayer/?categoria=comercios_con_beneficios&formato=geojson",
                     symbolizer: {
-                        externalGraphic: 'http://servicios.usig.buenosaires.gov.ar/usig-js/3.0/ejemplos/gml/images/planetario.png',
-                        backgroundGraphic: 'http://servicios.usig.buenosaires.gov.ar/usig-js/3.0/ejemplos/gml/images/fondos/cir_verde.png',
-                        pointRadius: 18
+                        externalGraphic: 'http://mapa.buenosaires.gov.ar/images/markers/comercios_con_beneficios.png',
+                        backgroundGraphic: 'http://mapa.buenosaires.gov.ar/images/markers/fondos/1.png',
+                        pointRadius: 30
                     },
+                    format: 'geojson',
                     minPointRadius: 9,
                     popup: true,
                     onClick: MapaInteractivo.clickHandler
                 });
 
-        MapaInteractivo.capa2 = MapaInteractivo.mapa.addVectorLayer('bibliotecas2', { 
-            url: "http://epok.buenosaires.gob.ar/getGeoLayer/?categoria=dependencias_culturales&actividades=22",
-            symbolizer: {
-                externalGraphic: 'http://servicios.usig.buenosaires.gov.ar/usig-js/3.0/ejemplos/gml/images/planetario.png',
-                backgroundGraphic: 'http://servicios.usig.buenosaires.gov.ar/usig-js/3.0/ejemplos/gml/images/fondos/cir_rojo.png',
-                pointRadius: 18
-            },
-            minPointRadius: 9,
-            popup: true,
-            onClick: MapaInteractivo.clickHandler
+        MapaInteractivo.capa1 = MapaInteractivo.mapa.addVectorLayer('estacionamiento_de_bicicletas', { 
+                    url: "http://epok.buenosaires.gob.ar/getGeoLayer/?categoria=estacionamiento_de_bicicletas&formato=geojson",
+                    symbolizer: {
+                        externalGraphic: 'http://mapa.buenosaires.gov.ar/images/markers/estacionamiento_de_bicicletas.png',
+                        pointRadius: 30
+                    },
+                    format: 'geojson',
+                    minPointRadius: 9,
+                    popup: true,
+                    onClick: MapaInteractivo.clickHandler
         });
 
-        MapaInteractivo.capa3 = MapaInteractivo.mapa.addVectorLayer('bibliotecas3', { 
-            url: "http://epok.buenosaires.gob.ar/getGeoLayer/?categoria=dependencias_culturales&actividades=22",
-            symbolizer: {
-                externalGraphic: 'http://servicios.usig.buenosaires.gov.ar/usig-js/3.0/ejemplos/gml/images/planetario.png',
-                backgroundGraphic: 'http://servicios.usig.buenosaires.gov.ar/usig-js/3.0/ejemplos/gml/images/fondos/cir_azul.png',
-                pointRadius: 18
-            },
-            minPointRadius: 9,
-            popup: true,
-            onClick: MapaInteractivo.clickHandler
+        MapaInteractivo.capa3 = MapaInteractivo.mapa.addVectorLayer('bicicleterias', { 
+                    url: "http://epok.buenosaires.gob.ar/getGeoLayer/?categoria=bicicleterias&formato=geojson",
+                    symbolizer: {
+                        externalGraphic: 'http://mapa.buenosaires.gov.ar/images/markers/bicicleteria.png',
+                        backgroundGraphic: 'http://mapa.buenosaires.gov.ar/images/markers/fondos/2.png',
+                        pointRadius: 30
+                    },
+                    format: 'geojson',
+                    minPointRadius: 9,
+                    popup: true,
+                    onClick: MapaInteractivo.clickHandler
         });        
     }
 
-    MapaInteractivo.clickHandler = function (){
-        console.log('click a la nada');
-    };
-
     MapaInteractivo.clickControl = function (){
     	var rel = $(this).attr('rel');
-    	if(MapaInteractivo.selected != rel){
-    		MapaInteractivo.selected = rel;
-            MapaInteractivo.mapa.toggleLayer(MapaInteractivo[rel]);
-    	}
+        $(this).toggleClass('btn-inverse');
+        MapaInteractivo.mapa.toggleLayer(MapaInteractivo[rel]);
     };
+
+    MapaInteractivo.clickHandler = function (e, popup) {
+        if (popup) {
+            popup.contentDiv.innerHTML = "<h3>" + e.feature.attributes['Nombre'] +"</h3><p class='indicator'>Buscando informaci&oacute;n...</p>";
+            popup.updateSize();
+            popup.show();
+            $.ajax({
+                url: "http://epok.buenosaires.gob.ar/getObjectContent/",
+                data: {
+                    id: e.feature.attributes['Id']
+                },
+                dataType: 'jsonp',
+                success: function(data) {
+                    console.log(data);
+                    if (popup != null) {
+                        var $div = $(popup.contentDiv);
+                        $('p.indicator', $div).remove();
+                        var content = '<ul style="width: 300px; list-style-type: none; margin: 5px 0; padding: 0;">';
+                        $.each(data.contenido, function(k, v) {
+                            if (v.nombreId != 'nombre' && v.valor != '') {
+                                content+='<li><b>'+v.nombre+'</b>: '+v.valor+'</li>';
+                            }
+                        });
+                        content+='</ul>';
+                        $div.append(content);
+                        popup.updateSize();
+                    }
+                },
+                error: function(e) {
+                    usig.debug(e);
+                }
+            });
+        }
+    };
+
 
 })(window, document,jQuery);
 

@@ -7,9 +7,11 @@
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-            <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+            <link rel="stylesheet" href="css/bootstrapBA.css" type="text/css">
             <link rel="stylesheet" href="css/bootstrap-responsive.min.css" type="text/css">
             <link rel="stylesheet" href="css/mapa_usig.css" type="text/css">
+
+            <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,600,700,800,300' rel='stylesheet' type='text/css'>
 
             <!--Etiquetas HTML5 para IE8 hacia abajo-->
             <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -26,18 +28,87 @@
         </head>
         <body style="">
 
-            <a class="control" rel="capa1" href="javascript:;">capa1</a>
-            <a class="control" rel="capa2" href="javascript:;">capa2</a>
-            <a class="control" rel="capa3" href="javascript:;">capa3</a>
-
-            <br/>
+            <div class="gcba-fixed-top">
+                <div class="header-gcba">
+                    <div class="container-fluid">
+                        <div class="row-fluid">
+                            <div class="gcba-fixed-top">
+                                <div class="header-gcba">
+                                    <div class="header-inner">
+                                        <div class="container">
+                                            <div id="ecobici"><img src="img/logo-ecobici.png"></div>
+                                            <div id="logo">Buenos Aires Ciudad</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>    
 
             <div id="mapa"></div>
 
-            <script type="text/javascript" src="js/libs/jquery-1.10.2.min.js"></script>
-            <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
-            <script type="text/javascript" src="http://servicios.usig.buenosaires.gob.ar/usig-js/3.0/usig.MapaInteractivo.min.js"></script>
-            <script type="text/javascript" src="js/mapa_interactivo.js"></script>
+            <div id="controls-container">
+                <div class="media">
+                    <button rel="capa1" class="control estacionamientos btn btn-block btn-inverse">
+                        <h3>
+                            <img style="margin-right:10px;" src="img/estacionamientos.png" class="img-circle" />
+                            Estacionamientos
+                        </h3>
+                     </button>
+                </div>
+    
+    
+                <div class="media">
+                    <button rel="capa2" class="control comercios btn btn-block btn-inverse"> 
+                        <h3>
+                            <img src="img/comercios.png" class="img-circle" style="display:block; float:left; margin-right:10px;"/>
+                            Locales amigos<br/>de la bici
+                        </h3>
+                    </button>
+                </div>
+      
+                <div class="media">
+                    <button rel="capa3" class="control bicicleterias btn btn-block btn-inverse">
+                        <h3>
+                            <img style="margin-right:10px;" src="img/bicicleterias.png" class="img-circle" />
+                            Bicicleterías
+                        </h3>
+                    </button>
+                </div>
+
+            </div>
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <h4 style="text-align:right;">Buscá nuestras Aplicaciones en las tiendas de Apple y Google </h4>
+                        </div>
+                                    
+                        <div class="span3">
+                            <p>
+                                <img src="img/como-llego.png" width="31" height="31" border="0"> 
+                                <strong>Como LLego</strong>
+                            </p>
+                        </div>
+                        
+                        <div class="span3">
+                            <p>
+                                <img src="img/ecobici.png" width="31" height="31" border="0">
+                                <strong>Eco Bici </strong>
+                            </p>  
+                        </div>
+
+                    </div>
+                </div>
+            </footer>
+
+    <script type="text/javascript" src="js/libs/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://servicios.usig.buenosaires.gob.ar/usig-js/3.0/usig.MapaInteractivo.min.js"></script>
+    <script type="text/javascript" src="js/mapa_interactivo.js"></script>
 
         </body>
 </html>
