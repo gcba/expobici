@@ -146,7 +146,9 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
 		})
 		.attr("x2", function(d){
 		  return x(parseDate('2013-09'))
-		});
+		})
+		//.each('end',  function(d){ console.log('fin graph!!');  })
+		;
 	}
 
 	draw();

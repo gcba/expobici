@@ -9,7 +9,7 @@ var AnimateDataviz;
     AnimateDataviz.graph;
     AnimateDataviz.map;
 
-    AnimateDataviz.duration = 1000 * 120;
+    AnimateDataviz.duration = 1000 * 100;
 
     AnimateDataviz.pause = 1000 * 10;
 
@@ -182,15 +182,34 @@ var AnimateDataviz;
     AnimateDataviz.updateNumbers = function(){
         var r = AnimateDataviz.duration / AnimateDataviz.data_acum.length;
         var i = 0;
+        var current;
         AnimateDataviz.intervalID = setInterval(function(){
+
+            if(AnimateDataviz.data_acum[i]){
+                current = AnimateDataviz.data_acum[i].anioMes;
+
+                AnimateDataviz.currentMonth = AnimateDataviz.meses[('0' + (current.getMonth()+1)).slice(-2)];
+                AnimateDataviz.$fecha_m.fadeOut('slow',function(){
+                    $(this).html(AnimateDataviz.meses[('0' + (current.getMonth()+1)).slice(-2)]).fadeIn();
+                });
+
+                if(AnimateDataviz.currentYear != current.getFullYear()){
+                    AnimateDataviz.currentYear = current.getFullYear();
+                    AnimateDataviz.$fecha_y.fadeOut('slow',function(){
+                        $(this).html(current.getFullYear()).fadeIn();
+                    });
+                }
+            }
+
             if(
                 AnimateDataviz.updateRecorridos(i) && 
                 AnimateDataviz.updateUsuarios(i) &&
-                AnimateDataviz.updateKms(i)
+                AnimateDataviz.updateKms(i) &&
+                AnimateDataviz.currentPanel == 'NUMBERS'
                 ){
+
                 i++;
             } else {
-                i = 0;
                 clearInterval(AnimateDataviz.intervalID);
             }
         },r);
@@ -199,27 +218,14 @@ var AnimateDataviz;
     AnimateDataviz.intervalIDDays;
 
     AnimateDataviz.updateDays = function(){
-        var r = AnimateDataviz.duration / AnimateDataviz.clima.length;
+        var r = Math.round(AnimateDataviz.duration / AnimateDataviz.clima.length);
         var i = 0;
         var current;
         AnimateDataviz.intervalIDDays = setInterval(function(){
+
             if(AnimateDataviz.clima[i]){
 
                 current = AnimateDataviz.clima[i].dia.split('/');
-
-                if(AnimateDataviz.currentMonth!=AnimateDataviz.meses[current[1]]){
-                    AnimateDataviz.currentMonth = AnimateDataviz.meses[current[1]];
-                    AnimateDataviz.$fecha_m.fadeOut('slow',function(){
-                        $(this).html(AnimateDataviz.meses[current[1]]).fadeIn();
-                    });
-                }
-
-                if(AnimateDataviz.currentYear!=current[0]){
-                    AnimateDataviz.currentYear = current[0];
-                    AnimateDataviz.$fecha_y.fadeOut('slow',function(){
-                        $(this).html(current[0]).fadeIn();
-                    });
-                }
 
                 if(AnimateDataviz.currentPanel == 'MAP'){
                     AnimateDataviz.map.update(AnimateDataviz.clima[i].dia);
@@ -229,10 +235,11 @@ var AnimateDataviz;
                     }
                 }
                 i++;
-            } else {
-                i = 0;
+            }  else {
+                console.log('clear!');
                 clearInterval(AnimateDataviz.intervalIDDays);
             }
+
         },r);
     };
 
@@ -298,6 +305,7 @@ var AnimateDataviz;
     };
     
     AnimateDataviz.everyStart = function(){
+        AnimateDataviz.graph.start();
         clearInterval(AnimateDataviz.intervalIDDays);
         clearInterval(AnimateDataviz.intervalID);
         AnimateDataviz.currentYear = '2010';
@@ -305,7 +313,6 @@ var AnimateDataviz;
         AnimateDataviz.$fecha_m.hide().html('DICIEMBRE').fadeIn();
         AnimateDataviz.switchPanel();
         AnimateDataviz.updateDays();
-        AnimateDataviz.graph.start();
     };
 
     AnimateDataviz.switchPanel = function(){
@@ -314,6 +321,7 @@ var AnimateDataviz;
             AnimateDataviz.currentPanel = 'MAP';
             AnimateDataviz.clearNumbers();
             AnimateDataviz.updateMap();
+            AnimateDataviz.updateNumbers();
         } else {
             AnimateDataviz.currentPanel = 'NUMBERS';
             AnimateDataviz.clearMap();
