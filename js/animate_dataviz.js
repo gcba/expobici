@@ -36,6 +36,7 @@ var AnimateDataviz;
     AnimateDataviz.$co2;
     AnimateDataviz.$calorias;
     AnimateDataviz.$hamburguesas;
+    AnimateDataviz.$ahorro;
 
     //Current
     AnimateDataviz.$fecha_m = $('#current_month');
@@ -143,12 +144,17 @@ var AnimateDataviz;
           format: '(.ddd),dd'
         });
 
-        var g = new Odometer({
+        var h = new Odometer({
           el: document.querySelector('#hamburguesas'),
           value: 0,
           format: '(.ddd),dd'
         });
 
+        var i = new Odometer({
+          el: document.querySelector('#ahorro'),
+          value: 0,
+          format: '(.ddd),dd'
+        });
 
         AnimateDataviz.$usuarios = $('#usuarios');
         AnimateDataviz.$recorridos = $('#recorridos');
@@ -159,6 +165,7 @@ var AnimateDataviz;
         AnimateDataviz.$co2 = $('#co2');
         AnimateDataviz.$calorias = $('#calorias');
         AnimateDataviz.$hamburguesas = $('#hamburguesas');
+        AnimateDataviz.$ahorro = $('#ahorro');
 
     };
 
@@ -253,6 +260,7 @@ var AnimateDataviz;
             AnimateDataviz.$co2.html( Math.round((AnimateDataviz.kms_mes[i].trDistance_Accum*0.156)/1000) ); //Toneladas
             AnimateDataviz.$calorias.html(Math.round((AnimateDataviz.kms_mes[i].trDistance_Accum*58.5)/1000000 )); //Millones
             AnimateDataviz.$hamburguesas.html(Math.round((AnimateDataviz.kms_mes[i].trDistance_Accum*58.5*0.0023) ));
+            AnimateDataviz.$ahorro.html(Math.round(AnimateDataviz.kms_mes[i].trDistance_Accum/1.30)); 
             return true;
         }
         return false;
@@ -267,6 +275,7 @@ var AnimateDataviz;
         AnimateDataviz.$hamburguesas.html(1);
         AnimateDataviz.$colon.html(1);
         AnimateDataviz.$luna.html(1);
+        AnimateDataviz.$ahorro.html(1);
 
         AnimateDataviz.$usuarios.html(0);
         AnimateDataviz.$recorridos.html(0);
@@ -276,6 +285,7 @@ var AnimateDataviz;
         AnimateDataviz.$hamburguesas.html(0);
         AnimateDataviz.$colon.html(0);
         AnimateDataviz.$luna.html(0);
+        AnimateDataviz.$ahorro.html(0);
     };
 
     AnimateDataviz.updateMap = function(d){

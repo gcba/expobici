@@ -127,6 +127,8 @@ body {
 }
 .viz-luna:before {
     content: "\e608";
+    line-height: 113px;
+    font-size: 63px;
 }
 
 header{display:block}
