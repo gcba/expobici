@@ -3,7 +3,7 @@
 ////////////////
 //
 // Fecha: Octubre 2014
-// Proyecto: Ecobici 2014
+// Proyecto: Expo Bici 2014
 // Autor: Pili Mayora
 // 
 // Output -> Actualizacion de tablas SQL:

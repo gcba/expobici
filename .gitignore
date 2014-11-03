@@ -1,3 +1,7 @@
 /data/scripts/config.php
 /src
+data/UsuariosXFecha.csv
+data/UsuariosXMes.csv
+data/UsuariosXMes2014.csv
+
 .DS_Store
