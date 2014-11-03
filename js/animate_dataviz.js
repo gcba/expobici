@@ -265,7 +265,7 @@ var AnimateDataviz;
             AnimateDataviz.$luna.html(Math.round(AnimateDataviz.kms_mes[i].trDistance_Accum/386160)); //Viaje ida
             AnimateDataviz.$co2.html( Math.round((AnimateDataviz.kms_mes[i].trDistance_Accum*0.156)/1000) ); //Toneladas
             AnimateDataviz.$calorias.html(Math.round((AnimateDataviz.kms_mes[i].trDistance_Accum*58.5)/1000000 )); //Millones
-            AnimateDataviz.$hamburguesas.html(Math.round((AnimateDataviz.kms_mes[i].trDistance_Accum*58.5*0.0023) ));
+            AnimateDataviz.$hamburguesas.html(Math.round((AnimateDataviz.kms_mes[i].trDistance_Accum*58.5*0.1181) )); //495 kcal por Big Mac
             AnimateDataviz.$ahorro.html(Math.round(AnimateDataviz.kms_mes[i].trDistance_Accum/1.30)); 
             return true;
         }
