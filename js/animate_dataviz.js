@@ -9,7 +9,7 @@ var AnimateDataviz;
     AnimateDataviz.graph;
     AnimateDataviz.map;
 
-    AnimateDataviz.duration = 1000 * 120;
+    AnimateDataviz.duration = 1000 * 60;
 
     AnimateDataviz.pause = 1000 * 10;
 
@@ -71,7 +71,7 @@ var AnimateDataviz;
           .defer(d3.csv, 'data/accumRecorBici.csv')
           .defer(d3.csv, 'data/UsuariosXMes.csv')
           .defer(d3.csv, 'data/biciKmMes.csv')
-          .defer(d3.csv, 'data/clima.csv')
+          .defer(d3.csv, 'data/dias.csv')
           .defer(d3.csv, 'data/hitos.csv')
           .awaitAll(AnimateDataviz.filesLoaded);
 
@@ -82,7 +82,7 @@ var AnimateDataviz;
         AnimateDataviz.data_acum = results[1];
         AnimateDataviz.usuarios_mes = results[2];
         AnimateDataviz.kms_mes = results[3];
-        AnimateDataviz.clima = results[4];
+        AnimateDataviz.dias = results[4];
         AnimateDataviz.hitos = d3.nest()
             .key(function(d) { return d.Fecha; })
             .rollup(function(d) { return d[0]; })
@@ -218,17 +218,17 @@ var AnimateDataviz;
     AnimateDataviz.intervalIDDays;
 
     AnimateDataviz.updateDays = function(){
-        var r = Math.round(AnimateDataviz.duration / AnimateDataviz.clima.length);
+        var r = Math.round(AnimateDataviz.duration / AnimateDataviz.dias.length);
         var i = 0;
         var current;
         AnimateDataviz.intervalIDDays = setInterval(function(){
 
-            if(AnimateDataviz.clima[i]){
+            if(AnimateDataviz.dias[i]){
 
-                current = AnimateDataviz.clima[i].dia.split('/');
+                current = AnimateDataviz.dias[i].dia.split('/');
 
                 if(AnimateDataviz.currentPanel == 'MAP'){
-                    AnimateDataviz.map.update(AnimateDataviz.clima[i].dia);
+                    AnimateDataviz.map.update(AnimateDataviz.dias[i].dia);
                     if( AnimateDataviz.hitos.get(current[1]+'/'+current[2]+'/'+current[0]) ){
                         AnimateDataviz.$hito.find('#hito').hide().html(AnimateDataviz.hitos.get(current[1]+'/'+current[2]+'/'+current[0]).Hito).fadeIn();
                         AnimateDataviz.$hito.find('#hito-fecha').hide().html(current[2] +' de ' + AnimateDataviz.meses[current[1]] +' de '+current[0]).fadeIn();
