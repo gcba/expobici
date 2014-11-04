@@ -142,10 +142,10 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
 		.duration(duration)
 		.ease('linear')
 		.attr("x1", function(d){
-		  return x(parseDate('2013-09'))
+		  return x(parseDate('2014-09'))
 		})
 		.attr("x2", function(d){
-		  return x(parseDate('2013-09'))
+		  return x(parseDate('2014-09'))
 		})
 		//.each('end',  function(d){ console.log('fin graph!!');  })
 		;
