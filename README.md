@@ -8,7 +8,7 @@
 
 ### Usuarios registrados 
 
-Información privada, compartida con nosotros por parte de Eco Bici.
+Información compartida con nosotros por Eco Bici.
 
 ###### Equivalente en Teatros Colón completos
 
