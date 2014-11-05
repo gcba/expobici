@@ -11,7 +11,7 @@ var AnimateDataviz;
 
     AnimateDataviz.duration = 1000 * 60;
 
-    AnimateDataviz.pause = 1000 * 10;
+    AnimateDataviz.pause = 1000 * 5;
 
     AnimateDataviz.stations;
         

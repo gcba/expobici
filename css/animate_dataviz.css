@@ -108,6 +108,10 @@ line.time {
   shape-rendering: crispEdges;
 }
 
+rect.info {
+  fill: #ffffff;
+  opacity: .8;
+}
 .panel {
   min-height: 800px;
   width: 100%;

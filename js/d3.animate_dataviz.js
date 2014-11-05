@@ -18,7 +18,7 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
 	    .range([height, 0]);
 
 	var y2 = d3.scale.linear()
-	    .range([height, 0]);
+	    .range([height, 0]);   
 
 	var xAxis = d3.svg.axis()
 	    .scale(x)
@@ -71,6 +71,35 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
 	var timeline,
 		duration = aDuration,
 		pause = aPause;
+
+	function moverObjeto(objeto) {
+		objeto
+		.attr("x", function(d){
+		  var pos = x(parseDate('2010-12'))
+		  return pos + 10
+		})
+		.transition()
+		.duration(duration*0.8)
+		.ease('linear')
+		.attr("x", function(d){
+		  var pos = x(parseDate('2013-12')) + 10;
+		  return pos;
+		})
+		.each("end", function() {
+			d3.select(this)
+			.attr("x", function(d) {
+				var pos = x(parseDate('2013-12')) - 150;
+		  		return pos;
+			})
+			.transition()
+			.duration(duration*0.2)
+			.ease('linear')
+			.attr("x", function(d) {
+				var pos = x(parseDate('2014-09')) - 150;
+				return pos;
+			});		
+		});	
+	}
 
     function draw(){
 
@@ -128,6 +157,34 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
 			.attr("y1",0)
 			.attr("y2",height);
 
+		container = svg.append("g")
+					   .data(data)
+					   .attr("x", function(d){
+						 var pos = x(parseDate('2010-12'))
+						 return pos + 10
+					   })
+					   .attr("y",20)
+					   .attr("height", 100)
+				 	   .attr("width", 140);
+
+		rect = container.append("rect")
+			.attr("class", "info")
+			.attr("x", function(d){
+			  var pos = x(parseDate('2010-12'))
+			  return pos + 10
+			})
+			.attr("y",20)
+			.attr("height", 100)
+			.attr("width", 140);
+
+		labels = container.append("text")
+						  .attr("x", function(d){
+							var pos = x(parseDate('2010-12'))
+							return pos + 20
+						  })
+						  .attr("y", 40)
+						  .attr("class", "label-viajes")
+						  .text("HOLA QUE TAL");	
 	}
 
 	var _startTransition = function (){
@@ -149,6 +206,37 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
 		})
 		//.each('end',  function(d){ console.log('fin graph!!');  })
 		;
+
+		moverObjeto(container);
+		moverObjeto(rect);
+	
+		labels
+		.attr("x", function(d){
+		  var pos = x(parseDate('2010-12'))
+		  return pos + 20
+		})
+		.transition()
+		.duration(duration*0.8)
+		.ease('linear')
+		.attr("x", function(d){
+		  var pos = x(parseDate('2013-12')) + 20;
+		  return pos;
+		})
+		.each("end", function() {
+			d3.select(this)
+			.attr("x", function(d) {
+				var pos = x(parseDate('2013-12')) - 140;
+		  		return pos;
+			})
+			.transition()
+			.duration(duration*0.2)
+			.ease('linear')
+			.attr("x", function(d) {
+				var pos = x(parseDate('2014-09')) - 140;
+				return pos;
+			});		
+		});	
+
 	}
 
 	draw();
