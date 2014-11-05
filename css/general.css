@@ -362,7 +362,7 @@ h2 {
 }
 
 #hito-container .span12{
-    height:                         310px;
+    height:                         270px;
     text-align:                     center;
     background-color:               #5CDBB0;
     border-width:                   10px;
@@ -383,7 +383,7 @@ h2 {
 
 #hito-container #hito-fecha{
     line-height: 1em;
-    margin-top: 60px;
+    margin-top: 40px;
     font-family: "Gotham Book", "Arial";
     font-style: normal;
     font-size: 2.2em;
