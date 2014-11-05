@@ -54,11 +54,12 @@
 
 .reference-viajes {
     color:                          #38154F;
+    padding-left:                   50px;
 }
 
 .reference-usuarios {
-
-  color:                            #FF5A06;
+   color:                            #FF5A06;
+   padding-right:                     50px;
 }
 
 .y2 text{
@@ -121,7 +122,12 @@ rect.info {
   display: none;
 }
 
+#graph-container {
+  text-align: center;
+}
+
 #map-container {
+  text-align: center;
   margin-top: 40px;
 }
 

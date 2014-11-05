@@ -353,24 +353,24 @@ h2 {
 }
 
 .widget .odometer-digit {
-    letter-spacing: .01em;
-    width: 10px !important;
+    letter-spacing:                 .01em;
+    width:                          10px !important;
 }
 
 .odometer-formatting-mark {
-    letter-spacing: .01em;
+    letter-spacing:                 .01em;
 }
 
 #hito-container .span12{
-    height: 310px;
-    text-align: center;
-    background-color: #5CDBB0;
-    border-width: 10px;
-    border-color: #FFFFFF;
-    border-style: solid;
-    border-radius:50px;
-    margin-bottom: 50px;
-    padding: 0 100px;
+    height:                         310px;
+    text-align:                     center;
+    background-color:               #5CDBB0;
+    border-width:                   10px;
+    border-color:                   #FFFFFF;
+    border-style:                   solid;
+    border-radius:                  50px;
+    margin-bottom:                  50px;
+    padding:                        0 100px;
 }
 
 #hito-container #hito{

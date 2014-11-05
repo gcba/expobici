@@ -1,8 +1,8 @@
 d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, users) {
 
-	var margin = {top: 20, right: 100, bottom: 30, left: 100},
+	var margin = {top: 20, right: 10, bottom: 50, left: 10},
 	    width = 1080 - margin.left - margin.right,
-	    height = 350 - margin.top - margin.bottom;
+	    height = 450 - margin.top - margin.bottom;
 
 	var parseDate = d3.time.format("%Y-%m").parse;
 	var parseDateUsuarios = d3.time.format("%Y %m").parse;
@@ -157,34 +157,48 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
 			.attr("y1",0)
 			.attr("y2",height);
 
-		container = svg.append("g")
-					   .data(data)
-					   .attr("x", function(d){
-						 var pos = x(parseDate('2010-12'))
-						 return pos + 10
-					   })
-					   .attr("y",20)
-					   .attr("height", 100)
-				 	   .attr("width", 140);
+		// container = svg.append("g")
+		// 			   .data(data)
+		// 			   .attr("x", function(d){
+		// 				 var pos = x(parseDate('2010-12'))
+		// 				 return pos + 10
+		// 			   })
+		// 			   .attr("y",20)
+		// 			   .attr("height", 100)
+		//		 	   .attr("width", 140);
 
-		rect = container.append("rect")
-			.attr("class", "info")
-			.attr("x", function(d){
-			  var pos = x(parseDate('2010-12'))
-			  return pos + 10
-			})
-			.attr("y",20)
-			.attr("height", 100)
-			.attr("width", 140);
+		// rect = container.append("rect")
+		// 	.attr("class", "info")
+		// 	.attr("x", function(d){
+		// 	  var pos = x(parseDate('2010-12'))
+		// 	  return pos + 10
+		// 	})
+		// 	.attr("y",20)
+		// 	.attr("height", 100)
+		// 	.attr("width", 140);
 
-		labels = container.append("text")
-						  .attr("x", function(d){
-							var pos = x(parseDate('2010-12'))
-							return pos + 20
-						  })
-						  .attr("y", 40)
-						  .attr("class", "label-viajes")
-						  .text("HOLA QUE TAL");	
+		// labelViajes = container.append("text")
+		// 				  .data(data)
+		// 				  .attr("x", function(d){
+		// 					var pos = x(parseDate('2010-12'))
+		// 					return pos + 20
+		// 				  })
+		// 				  .attr("y", 40)
+		// 				  .attr("class", "label-viajes")
+		// 				  .text(function (d){
+		// 				  	return d.Record_Count;
+		// 				  });	
+		// labelUsuarios = container.append("text")
+		// 				  .data(users)
+		// 				  .attr("x", function(d){
+		// 					var pos = x(parseDate('2010-12'))
+		// 					return pos + 20
+		// 				  })
+		// 				  .attr("y", 90)
+		// 				  .attr("class", "label-usuarios")
+		// 				  .text(function (d){
+		// 				  	return d.usuarios;
+		// 				  });	
 	}
 
 	var _startTransition = function (){
@@ -203,17 +217,20 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
 		})
 		.attr("x2", function(d){
 		  return x(parseDate('2014-09'))
-		})
-		//.each('end',  function(d){ console.log('fin graph!!');  })
-		;
+		});
 
-		moverObjeto(container);
-		moverObjeto(rect);
-	
-		labels
+		// moverObjeto(container);
+		// moverObjeto(rect);
+		
+		/*
+
+		labelViajes
 		.attr("x", function(d){
 		  var pos = x(parseDate('2010-12'))
 		  return pos + 20
+		})
+		.text(function (d){
+			return d.Record_Count;
 		})
 		.transition()
 		.duration(duration*0.8)
@@ -221,6 +238,9 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
 		.attr("x", function(d){
 		  var pos = x(parseDate('2013-12')) + 20;
 		  return pos;
+		})
+		.text(function (d){
+			return d.Record_Count;
 		})
 		.each("end", function() {
 			d3.select(this)
@@ -236,6 +256,42 @@ d3.animate_dataviz = function(containerId, stations, data, aDuration, aPause, us
 				return pos;
 			});		
 		});	
+
+
+		labelUsuarios
+		.attr("x", function(d){
+		  var pos = x(parseDate('2010-12'))
+		  return pos + 20
+		})
+		.text(function (d){
+			return d.usuarios;
+		})
+		.transition()
+		.duration(duration*0.8)
+		.ease('linear')
+		.attr("x", function(d){
+		  var pos = x(parseDate('2013-12')) + 20;
+		  return pos;
+		})
+		.text(function (d){
+			return d.usuarios;
+		})
+		.each("end", function() {
+			d3.select(this)
+			.attr("x", function(d) {
+				var pos = x(parseDate('2013-12')) - 140;
+		  		return pos;
+			})
+			.transition()
+			.duration(duration*0.2)
+			.ease('linear')
+			.attr("x", function(d) {
+				var pos = x(parseDate('2014-09')) - 140;
+				return pos;
+			});		
+		});	
+
+		*/
 
 	}
 
