@@ -1,5 +1,22 @@
 var AnimateDataviz;
 
+function calcularAhorro(i) {
+    // EN CAMINO
+    // var anio_iteration = Math.floor(i/12);
+    // var precios_anio = array("4,51", "5,58", "6,89", "11,91");
+    // var km_anio = array(AnimateDataviz.kms_mes)
+    // var ahorro = 0;
+    // switch (anio_iteration) {
+    //     case 0:
+    //         ahorro = Math.round(AnimateDataviz.kms_mes[i].trDistance_Accum/precios_anio[0]);
+    //         break;
+    //     case 1:
+    //         var primer_anio_km = AnimateDataviz.kms_mes[12].trDistance_Accum;
+    //         ahorro = Math.round(AnimateDataviz.kms_mes[12].trDistance_Accum/precios_anio[0]); 
+    // }
+    return Math.round(AnimateDataviz.kms_mes[i].trDistance_Accum/1.30);
+}
+
 ;(function(global, document, $, d3){
 
     "use strict";
@@ -266,7 +283,7 @@ var AnimateDataviz;
             AnimateDataviz.$co2.html( Math.round((AnimateDataviz.kms_mes[i].trDistance_Accum*0.156)/1000) ); //Toneladas
             AnimateDataviz.$calorias.html(Math.round((AnimateDataviz.kms_mes[i].trDistance_Accum*58.5)/1000000 )); //Millones
             AnimateDataviz.$hamburguesas.html(Math.round((AnimateDataviz.kms_mes[i].trDistance_Accum*0.1181) )); //495 kcal por Big Mac
-            AnimateDataviz.$ahorro.html(Math.round(AnimateDataviz.kms_mes[i].trDistance_Accum/1.30)); // Actualizar con nafta por año
+            AnimateDataviz.$ahorro.html(calcularAhorro(i)); // Actualizar con nafta por año
             return true;
         }
         return false;
